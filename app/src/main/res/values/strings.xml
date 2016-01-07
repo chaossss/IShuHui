@@ -1,0 +1,39 @@
+<resources>
+    <!-- Base application string. -->
+    <string name="app_name">鼠绘漫画</string>
+    <string name="app_version">Version 1.0</string>
+
+    <!-- AboutActivity string. -->
+    <string name="about_introduce_and_help">介绍与帮助</string>
+    <string name="about_introduce">组织介绍\n鼠绘漫画网是鼠绘汉化组的官方网站，组织前身为海贼王吧鼠绘汉化组。经过几年发展已经成为国内较为大型的汉化组。且整体水平优秀，是目前国内动漫类翻译爱好人员的最大集中地之一。
+与此同时，鼠绘汉化组还自费举办多项活动，深受漫迷的好评。除此之外，我们陆续制作推出自己的原创栏目《鼠绘SBS》、《七级符图》等。正努力从单纯的民间翻译组织过渡到民间动漫综合组织。\n\n原创漫画\n
+《汉化组的那点事》是国内首部以汉化组内部生活为题材的漫画，通过幽默的漫画形式让大家了解汉化中的一些趣事。但是由于作者极度崇拜富坚义博，目前该漫画已进入年刊制。\n\n鼠绘专栏\n
+《鼠绘SBS》是鼠绘君专门与读者们交流的一档栏目，采用幽默诙谐的方式回答读者关于动漫、生活、感情、工作等方面的提问。这里不是知心哥哥热线，这里只为让你坑爹的生活多一份逗比罢了。</string>
+
+    <!-- WelcomeActivity string. -->
+    <string name="welcome_app_website">www.ishuhui.com</string>
+    <string name="welcome_app_version">V 1.0.0</string>
+    <string name="welcome_app_copyright">Copyright &#169; 2015 鼠绘漫画 All Rights Reserved\nPowered by chaossss</string>
+
+    <!-- NewestFragment string. -->
+    <array name="newest_refresh_scheme">
+        <item>@color/newest_refresh_gray</item>
+        <item>@color/newest_refresh_purple</item>
+        <item>@color/newest_refresh_pink</item>
+        <item>@color/newest_refresh_drak</item>
+    </array>
+    <string name="newest_list_new">新</string>
+    <string name="newest_list_subscribe">+订阅</string>
+
+    <!-- ViewSelector string. -->
+    <string name="view_selector_reload">重新加载</string>
+    <string name="view_selector_no_data">没有数据</string>
+
+    <!-- DrawerView string. -->
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer close</string>
+    <string name="drawer_newest_comic">最新漫画</string>
+    <string name="drawer_divide_comic">漫画分类</string>
+    <string name="drawer_selected_comic">精选漫画</string>
+    <string name="drawer_about_us">关于鼠绘</string>
+</resources>

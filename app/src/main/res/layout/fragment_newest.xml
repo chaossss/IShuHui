@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.baoyz.widget.PullRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/newest_refresh_layout"
+    app:refreshType="material"
+    app:refreshColors="@array/newest_refresh_scheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/newest_newest_list"
+        android:paddingTop="4dp"
+        android:clipToPadding="false"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        android:scrollbars="vertical"
+        android:scrollbarSize="2dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarThumbVertical="@color/md_orange"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</com.baoyz.widget.PullRefreshLayout>

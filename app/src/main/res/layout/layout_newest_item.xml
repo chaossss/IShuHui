@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0.75dp">
+
+    <LinearLayout
+        android:id="@+id/ll_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_newest_holder"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/holder_newest_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.github.chaossss.widget.view.TriBadgedView
+                android:id="@+id/holder_newest_cover_badge"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                app:TribadgeGravity="topLeft"
+                app:badgeText="@string/newest_list_new">
+                <ImageView
+                    android:id="@+id/holder_newest_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+            </com.github.chaossss.widget.view.TriBadgedView>
+
+            <TextView
+                android:id="@+id/holder_newest_latest_chapter_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/drawable_newest_item_title"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:layout_gravity="bottom"
+                android:padding="4dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/holder_newest_latest_chapter_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:tag="Hover"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/holder_newest_latest_update_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/holder_newest_subscribe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="4dp"
+            android:text="+订阅"
+            android:textColor="#ff5722"
+            android:textSize="14sp"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

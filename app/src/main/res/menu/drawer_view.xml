@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_newest"
+            android:icon="@mipmap/ic_thumb_up_black_48dp"
+            android:title="@string/drawer_newest_comic" />
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@mipmap/ic_dashboard_black_48dp"
+            android:title="@string/drawer_divide_comic" />
+        <item
+            android:id="@+id/nav_subscribe"
+            android:icon="@mipmap/ic_stars_black_48dp"
+            android:title="@string/drawer_selected_comic" />
+
+        <item
+            android:id="@+id/nav_update"
+            android:icon="@mipmap/ic_seven"
+            android:title="@string/drawer_selected_comic" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@mipmap/ic_help_black_48dp"
+            android:title="@string/drawer_about_us" />
+    </group>
+</menu>

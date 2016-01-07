@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\IShuHui\HttpLibrary\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="cc9d6404c990e362b88d65811b56a484b746b890">
+        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-d61ae1805f13978a3aa9bf3cc9cbe56d9f9f565d.jar" />
+    </item>
+
+</items>
