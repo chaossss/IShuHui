@@ -13,59 +13,51 @@ import java.lang.reflect.Type;
  * Created by chaos on 2016/1/5.
  */
 public class SPUtils {
+    private static final Gson gson = new Gson();
+    private static final String EMPTY_STR = "";
+    private static final String APP_ID = "IShuHui";
     private static final Context context = BaseApplication.baseApplication;
-    private static final String APP_ID = "ishuhui";   //相当于文件名
-    private static final Gson gson = new Gson();   //获取Gson
 
-    SPUtils()
-    {
-        throw new UnsupportedOperationException("禁止实例化该类！");
+    private SPUtils(){
+        throw new UnsupportedOperationException("Instantiation is forbidden!");
     }
 
     /**
-     * 缓存信息
-     * @param cacheName	存入名字
-     * @param obj	对象
+     * Cache obj mapped to cacheName
      */
-    public static void saveObject(String cacheName,Object obj){
+    public static void saveObject(String cacheName, Object obj){
         SharedPreferences.Editor e = context.getSharedPreferences(APP_ID, Context.MODE_PRIVATE).edit();
         String json =  gson.toJson(obj);
         e.putString(cacheName, json);
-        e.commit();
+        e.apply();
     }
 
     /**
-     * 读取String缓存信息
-     * @param <T>
-     * @param cacheName	缓存名
+     * Get cache by cacheName
      */
     public static String getObject(String cacheName){
         return getObject(cacheName,String.class,null);
     }
 
     /**
-     * 读取缓存信息
-     * @param <T>
-     * @param cacheName	缓存名
-     * @param classes	对象类型
+     * Get cache by cacheName
+     * @param classes	obj's type
      */
-    public static <T> T getObject(String cacheName,Class<T> classes){
-        return getObject(cacheName,classes,null);
+    public static <T> T getObject(String cacheName, Class<T> classes){
+        return getObject(cacheName, classes, null);
     }
 
     /**
-     * 读取缓存信息
-     * @param <T>
-     * @param cacheName	缓存名
-     * @param classes	对象类型
-     * @param defaultValue	默认参数
+     * Get cache by cacheName
+     * @param classes	obj's type
+     * @param defaultValue	default params
      */
-    public static <T> T getObject(String cacheName,Class<T> classes,T defaultValue){
+    public static <T> T getObject(String cacheName, Class<T> classes, T defaultValue){
         SharedPreferences s = context.getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
-        String jsonString = s.getString(cacheName, "");
-        if(!"".equals(jsonString)){
+        String jsonString = s.getString(cacheName, EMPTY_STR);
+        if(StringUtils.isValid(jsonString)){
             try {
-                T o = (T)gson.fromJson(jsonString, classes);
+                T o = gson.fromJson(jsonString, classes);
                 return o;
             }catch (Exception e){
                 e.printStackTrace();
@@ -76,29 +68,23 @@ public class SPUtils {
     }
 
     /**
-     * 读取缓存信息
-     * 读取List 等列表type要这么写 new TypeToken<ArrayList<GoodsCategory>>(){}.getType()
-     * @param <T>
-     * @param cacheName	缓存名
-     * @param type	对象类型
+     * Get cache by cacheName
      */
     public static <T> T getObject(String cacheName,Type type){
         return getObject(cacheName,type,null);
     }
 
     /**
-     * 读取缓存信息
-     * @param <T>
-     * @param cacheName	缓存名
-     * @param type	对象类型
-     * @param defaultValue	默认参数
+     * Get cache by cacheName
+     * @param type	obj's type
+     * @param defaultValue	default params
      */
     public static <T> T getObject(String cacheName,Type type,T defaultValue){
         SharedPreferences s = context.getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
-        String jsonString = s.getString(cacheName, "");
-        if(!"".equals(jsonString)){
+        String jsonString = s.getString(cacheName, EMPTY_STR);
+        if(!StringUtils.isValid(jsonString)){
             try {
-                T o = (T)gson.fromJson(jsonString, type);
+                T o = gson.fromJson(jsonString, type);
                 return o;
             }catch (Exception e){
                 e.printStackTrace();
@@ -109,16 +95,15 @@ public class SPUtils {
     }
 
     /**
-     * 删除信息
-     * @param cacheName 缓存名
+     * Delete cache
      */
     public static void delObject(String cacheName){
         SharedPreferences s = context.getSharedPreferences(APP_ID, Context.MODE_PRIVATE);
-        s.edit().remove(cacheName).commit();
+        s.edit().remove(cacheName).apply();
     }
 
     /**
-     * 清除所有数据
+     * Clear all cache
      */
     public static void clearAll()
     {

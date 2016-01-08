@@ -35,12 +35,8 @@ public class EncryptionUtils {
             return time;
 
         } catch (ParseException e) {
-            printlnMsg("cjj error "+e.toString());
+            e.printStackTrace();
             return null;
         }
-    }
-
-    private static void printlnMsg(String msg){
-        System.out.println(msg);
     }
 }
