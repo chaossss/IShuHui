@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 app:TribadgeGravity="topLeft"
-                app:badgeText="@string/newest_list_new">
+                app:badgeColor="@color/red"
+                app:badgeTextColor="@color/white">
                 <ImageView
                     android:id="@+id/holder_newest_cover"
                     android:layout_width="match_parent"

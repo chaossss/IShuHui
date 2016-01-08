@@ -63,6 +63,7 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestViewHolder> {
             return;
         }
 
+        holder.badgedView.setBadgeText("新");
         holder.subtitle.setText(allBook.LastChapter.Title);
         holder.updateTime.setText(allBook.LastChapter.RefreshTimeStr);
         holder.title.setText(StringUtils.generateStr(allBook.Title + DIVIDER + allBook.LastChapter.ChapterNo + CHAPTER));
