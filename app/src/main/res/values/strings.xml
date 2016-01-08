@@ -35,5 +35,6 @@
     <string name="drawer_newest_comic">最新漫画</string>
     <string name="drawer_divide_comic">漫画分类</string>
     <string name="drawer_selected_comic">精选漫画</string>
+    <string name="drawer_update_this_week">本周更新</string>
     <string name="drawer_about_us">关于鼠绘</string>
 </resources>
