@@ -1,0 +1,56 @@
+<com.baoyz.widget.PullRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/category_refresh_layout"
+    app:refreshType="material"
+    app:refreshColors="@array/newest_refresh_scheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <com.github.chaossss.customview.StickyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/category_adv_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"/>
+
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/category_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="end"
+                    app:ci_animator="@animator/indicator_animator"
+                    app:ci_animator_reverse="@animator/indicator_animator_reverse"
+                    app:ci_drawable="@drawable/black_radius_square"
+                    app:ci_height="4dp"
+                    app:ci_margin="6dp"
+                    app:ci_width="10dp" />
+            </FrameLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/category_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/brownness"
+                android:tag="sticky"/>
+
+            <View
+                android:background="#dfdfdf"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/category_comic_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </com.github.chaossss.customview.StickyScrollView>
+</com.baoyz.widget.PullRefreshLayout>

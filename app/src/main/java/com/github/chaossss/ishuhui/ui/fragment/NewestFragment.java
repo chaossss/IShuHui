@@ -43,21 +43,22 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_newest, null);
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.newest_newest_list);
-        StaggeredGridLayoutManager layoutManager =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-
         pullRefreshLayout = (PullRefreshLayout) v.findViewById(R.id.newest_refresh_layout);
-        pullRefreshLayout.setOnRefreshListener(this);
 
-        getBookData();
+        recyclerView = (RecyclerView) v.findViewById(R.id.newest_newest_list);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
         return v;
     }
 
-    private void getBookData()
-    {
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        pullRefreshLayout.setOnRefreshListener(this);
+        getBookData();
+    }
+
+    private void getBookData() {
         AppDao.getInstance().getAllBook(new BaseCallbackListener<AllBookModels>() {
             @Override
             public void onStringResult(String result) {
