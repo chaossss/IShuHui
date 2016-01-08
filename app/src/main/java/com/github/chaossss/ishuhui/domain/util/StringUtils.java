@@ -4,6 +4,7 @@ package com.github.chaossss.ishuhui.domain.util;
  * Created by chaos on 2016/1/2.
  */
 public class StringUtils {
+    public static final String EMPTY_STR = "";
     private static StringBuilder sb = new StringBuilder();
     private static StringUtils stringUtils = new StringUtils();
 

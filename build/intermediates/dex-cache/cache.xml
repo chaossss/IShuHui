@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\com.github.chaossss\BadgedView\1.1.1\jars\classes.jar"
+        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\me.relex\circleindicator\1.1.5\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="cf43d8c53ff9ed5d17ed7b31600763929942b6a8">
-        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-56cf8e78f8820332bff6cf409525a180c5bd285e.jar" />
+        sha1="3505b86b653bb367105403d204cc7752142d86c1">
+        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-a09809241077b7c60f859a5a4889376c9b75463c.jar" />
     </item>
 
 </items>

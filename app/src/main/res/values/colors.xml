@@ -7,6 +7,8 @@
     <color name="window_background">#FFF5F5F5</color>
     <color name="welcome_text_background">#1AFFFFFF</color>
 
+    <color name="test">#dfdfdf</color>
+
     <color name="newest_refresh_gray">#F67280</color>
     <color name="newest_refresh_purple">#C06C84</color>
     <color name="newest_refresh_pink">#6C5B7B</color>

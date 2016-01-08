@@ -5,12 +5,12 @@
     app:refreshColors="@array/newest_refresh_scheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    <com.github.chaossss.customview.StickyScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <FrameLayout
                 android:layout_width="match_parent"
@@ -39,6 +39,9 @@
                 android:id="@+id/category_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:tabTextColor="@color/white"
+                app:tabIndicatorColor="@color/white"
+                app:tabSelectedTextColor="@color/white"
                 android:background="@color/brownness"
                 android:tag="sticky"/>
 
@@ -52,5 +55,5 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
-    </com.github.chaossss.customview.StickyScrollView>
+    </ScrollView>
 </com.baoyz.widget.PullRefreshLayout>

@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.github.chaossss.ishuhui.R;
+import com.github.chaossss.ishuhui.ui.fragment.CategoryFragment;
 import com.github.chaossss.ishuhui.ui.fragment.NewestFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String hideTag;
 
     private NewestFragment newestFragment;
+    private CategoryFragment categoryFragment;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -39,8 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        newestFragment = new NewestFragment();
-        switchFragment(DRAWER_NEWEST, newestFragment);
+        initFragments();
 
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -68,6 +69,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    private void initFragments(){
+        newestFragment = new NewestFragment();
+        categoryFragment = new CategoryFragment();
+
+        switchFragment(DRAWER_NEWEST, newestFragment);
     }
 
     /**
@@ -110,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switchFragment(DRAWER_NEWEST, newestFragment);
                 break;
             case R.id.nav_category:
+                switchFragment(DRAWER_CATEGORY, categoryFragment);
                 break;
             case R.id.nav_update:
                 break;

@@ -15,6 +15,8 @@ import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.ishuhui.domain.dao.AppDao;
 import com.github.chaossss.ishuhui.domain.model.AdvModel;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
+import com.github.chaossss.ishuhui.ui.adapter.AdvPagerAdapter;
+import com.github.chaossss.ishuhui.ui.adapter.ComicPagerAdapter;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -28,6 +30,17 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
     private ViewPager comicViewPager;
     private CircleIndicator circleIndicator;
     private PullRefreshLayout pullRefreshLayout;
+
+    private AdvPagerAdapter advPagerAdapter;
+    private ComicPagerAdapter comicPagerAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        advPagerAdapter = new AdvPagerAdapter(getActivity());
+        comicPagerAdapter = new ComicPagerAdapter(getChildFragmentManager());
+    }
 
     @Nullable
     @Override
@@ -46,7 +59,15 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initComicPager();
+        getAdvData();
         pullRefreshLayout.setOnRefreshListener(this);
+    }
+
+    private void initComicPager(){
+        comicViewPager.setAdapter(comicPagerAdapter);
+        comicViewPager.setOffscreenPageLimit(2);
+        tabLayout.setupWithViewPager(comicViewPager);
     }
 
     private void getAdvData(){
@@ -62,7 +83,9 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
             public void onSuccess(AdvModel result) {
                 super.onSuccess(result);
                 if(result != null){
-
+                    advPagerAdapter.updateAdvs(result.list);
+                    advViewPager.setAdapter(advPagerAdapter);
+                    circleIndicator.setViewPager(advViewPager);
                 }
             }
 
