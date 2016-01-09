@@ -38,6 +38,8 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
 
     private AdvPagerHandler advPagerHandler;
 
+    private boolean isAntiClockWise;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,10 +121,20 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
         if(msg.what == AdvPagerHandler.ADV_PAGER_MSG){
             int currIndex = msg.arg1;
 
-            if(currIndex != advPagerAdapter.getCount() - 1){
-                currIndex++;
+            if(!isAntiClockWise){
+                if(currIndex != advPagerAdapter.getCount() - 1){
+                    currIndex++;
+                } else {
+                    currIndex--;
+                    isAntiClockWise = !isAntiClockWise;
+                }
             } else {
-                currIndex = 0;
+                if(currIndex != 0){
+                    currIndex--;
+                } else {
+                    currIndex++;
+                    isAntiClockWise = !isAntiClockWise;
+                }
             }
 
             advViewPager.setCurrentItem(currIndex);
