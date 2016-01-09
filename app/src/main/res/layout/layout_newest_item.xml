@@ -12,7 +12,7 @@
         android:id="@+id/ll_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_newest_holder"
+        android:background="@drawable/bg_holder"
         android:orientation="vertical">
         <FrameLayout
             android:id="@+id/holder_newest_wrapper"

@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +16,10 @@ import com.github.chaossss.ishuhui.domain.dao.AppDao;
 import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
 import com.github.chaossss.ishuhui.ui.adapter.NewestAdapter;
-import com.github.chaossss.ishuhui.ui.custom.ViewSelectorLayout;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by chaos on 2016/1/4.
@@ -29,7 +28,7 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
     private RecyclerView recyclerView;
     private PullRefreshLayout pullRefreshLayout;
     private NewestAdapter newestAdapter;
-    private ArrayList<AllBookModels.ReturnClazz.AllBook> newestList;
+    private List<AllBookModels.ReturnClazz.AllBook> newestList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_newest, null);
+        View v = inflater.inflate(R.layout.fragment_newest, container, false);
 
         pullRefreshLayout = (PullRefreshLayout) v.findViewById(R.id.newest_refresh_layout);
 
@@ -69,10 +68,10 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
             @Override
             public void onSuccess(AllBookModels result) {
                 super.onSuccess(result);
-                newestList =  (ArrayList) result.Return.List;
+                newestList =  result.Return.List;
 
                 if (newestAdapter == null) {
-                    newestAdapter = new NewestAdapter(getActivity(), newestList);
+                    newestAdapter = new NewestAdapter(getContext(), newestList);
                     recyclerView.setAdapter(newestAdapter);
                 } else {
                     newestAdapter.updateData(newestList);

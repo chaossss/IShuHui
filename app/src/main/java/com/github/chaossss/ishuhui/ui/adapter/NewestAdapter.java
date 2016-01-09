@@ -28,6 +28,7 @@ import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 import com.github.chaossss.ishuhui.ui.viewholder.NewestViewHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by chaos on 2016/1/4.
@@ -37,14 +38,14 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestViewHolder> {
     private static final String DIVIDER = "  ";
 
     private Context context;
-    private ArrayList<AllBookModels.ReturnClazz.AllBook> newestList;
+    private List<AllBookModels.ReturnClazz.AllBook> newestList;
 
-    public NewestAdapter(Context context,ArrayList<AllBookModels.ReturnClazz.AllBook> newestList) {
+    public NewestAdapter(Context context, List<AllBookModels.ReturnClazz.AllBook> newestList) {
         this.context = context;
         this.newestList = newestList;
     }
 
-    public void updateData(ArrayList<AllBookModels.ReturnClazz.AllBook> newestList) {
+    public void updateData(List<AllBookModels.ReturnClazz.AllBook> newestList) {
         this.newestList = newestList;
         this.notifyDataSetChanged();
     }
@@ -129,6 +130,6 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestViewHolder> {
 
     @Override
     public int getItemCount() {
-        return newestList.size();
+        return newestList == null ? 0 : newestList.size();
     }
 }

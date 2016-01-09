@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.github.chaossss.ishuhui.domain.util.StringUtils;
+import com.github.chaossss.ishuhui.ui.fragment.CategoryFragment;
+import com.github.chaossss.ishuhui.ui.fragment.CategoryListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,45 +15,39 @@ import java.util.List;
  * Created by chaos on 2016/1/8.
  */
 public class ComicPagerAdapter extends FragmentPagerAdapter {
-    private static final int CATEGORY_FIRST = 0;
-    private static final int CATEGORY_SECOND = 1;
-    private static final int CATEGORY_THIRD = 2;
-    private static final int CATEGORY_NUMS = 3;
-
-    private static final String CATEGORY_FIRST_TITLE = "热血";
-    private static final String CATEGORY_SECOND_TITLE = "国产";
-    private static final String CATEGORY_THIRD_TITLE = "鼠绘";
-
     private static List<Fragment> comicCategory = new ArrayList<>();
 
     public ComicPagerAdapter(FragmentManager fm) {
         super(fm);
+        comicCategory.add(CategoryListFragment.newInstance(CategoryListFragment.CATEGORY_FIRST));
+        comicCategory.add(CategoryListFragment.newInstance(CategoryListFragment.CATEGORY_SECOND));
+        comicCategory.add(CategoryListFragment.newInstance(CategoryListFragment.CATEGORY_THIRD));
     }
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        return comicCategory.get(position);
     }
 
     @Override
     public int getCount() {
-        return CATEGORY_NUMS;
+        return CategoryListFragment.CATEGORY_NUMS;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position){
-            case CATEGORY_FIRST:
-                return CATEGORY_FIRST_TITLE;
+            case CategoryListFragment.CATEGORY_FIRST:
+                return CategoryListFragment.CATEGORY_FIRST_TITLE;
 
-            case CATEGORY_SECOND:
-                return CATEGORY_SECOND_TITLE;
+            case CategoryListFragment.CATEGORY_SECOND:
+                return CategoryListFragment.CATEGORY_SECOND_TITLE;
 
-            case CATEGORY_THIRD:
-                return CATEGORY_THIRD_TITLE;
+            case CategoryListFragment.CATEGORY_THIRD:
+                return CategoryListFragment.CATEGORY_THIRD_TITLE;
 
             default:
-                return StringUtils.EMPTY_STR;
+                return CategoryListFragment.CATEGORY_FIRST_TITLE;
         }
     }
 }
