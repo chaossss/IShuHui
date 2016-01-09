@@ -72,8 +72,6 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
 
     private void initAdvPager(){
         advViewPager.setAdapter(advPagerAdapter);
-        circleIndicator.setViewPager(advViewPager);
-
         getAdvData();
     }
 
@@ -96,9 +94,9 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
                 super.onSuccess(result);
                 if (result != null) {
                     advPagerAdapter.updateAdvs(result.list);
+                    circleIndicator.setViewPager(advViewPager);
                     pullRefreshLayout.setRefreshing(false);
-                    advViewPager.setCurrentItem(0);
-                    advPagerHandler.slidingPlayView(0);
+                    advPagerHandler.slidingPlayView(advViewPager.getCurrentItem());
                 }
             }
 

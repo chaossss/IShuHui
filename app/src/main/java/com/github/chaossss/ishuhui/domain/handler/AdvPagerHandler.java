@@ -30,7 +30,7 @@ public class AdvPagerHandler extends Handler {
         Message message = Message.obtain();
         message.arg1 = currIndex;
         message.what = ADV_PAGER_MSG;
-        sendMessage(message);
+        sendMessageDelayed(message, DEFAULT_TIME);
     }
     
     public interface AdvPagerMsgListener{
