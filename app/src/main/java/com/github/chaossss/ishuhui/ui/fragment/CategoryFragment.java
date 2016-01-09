@@ -1,6 +1,7 @@
 package com.github.chaossss.ishuhui.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import com.baoyz.widget.PullRefreshLayout;
 import com.github.chaossss.httplibrary.listener.BaseCallbackListener;
 import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.ishuhui.domain.dao.AppDao;
+import com.github.chaossss.ishuhui.domain.handler.AdvPagerHandler;
 import com.github.chaossss.ishuhui.domain.model.AdvModel;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
 import com.github.chaossss.ishuhui.ui.adapter.AdvPagerAdapter;
@@ -24,7 +26,7 @@ import me.relex.circleindicator.CircleIndicator;
 /**
  * Created by chaos on 2016/1/8.
  */
-public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRefreshListener {
+public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRefreshListener, AdvPagerHandler.AdvPagerMsgListener {
     private TabLayout tabLayout;
     private ViewPager advViewPager;
     private ViewPager comicViewPager;
@@ -34,10 +36,13 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
     private AdvPagerAdapter advPagerAdapter;
     private ComicPagerAdapter comicPagerAdapter;
 
+    private AdvPagerHandler advPagerHandler;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        advPagerHandler = new AdvPagerHandler(this);
         advPagerAdapter = new AdvPagerAdapter(getActivity());
         comicPagerAdapter = new ComicPagerAdapter(getChildFragmentManager());
     }
@@ -59,22 +64,29 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        initAdvPager();
         initComicPager();
-        getAdvData();
         pullRefreshLayout.setOnRefreshListener(this);
     }
 
-    private void initComicPager(){
+    private void initAdvPager(){
+        advViewPager.setAdapter(advPagerAdapter);
+        circleIndicator.setViewPager(advViewPager);
+
+        getAdvData();
+    }
+
+    private void initComicPager() {
         comicViewPager.setAdapter(comicPagerAdapter);
         comicViewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(comicViewPager);
     }
 
     private void getAdvData(){
-        AppDao.getInstance().getSlideData(new BaseCallbackListener<AdvModel>(){
+        AppDao.getInstance().getSlideData(new BaseCallbackListener<AdvModel>() {
             @Override
             public void onStringResult(String result) {
-                super.onStringResult(result);
                 super.onStringResult(result);
                 LogUtils.logI(this, "onStringResult" + result);
             }
@@ -82,10 +94,11 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
             @Override
             public void onSuccess(AdvModel result) {
                 super.onSuccess(result);
-                if(result != null){
+                if (result != null) {
                     advPagerAdapter.updateAdvs(result.list);
-                    advViewPager.setAdapter(advPagerAdapter);
-                    circleIndicator.setViewPager(advViewPager);
+                    pullRefreshLayout.setRefreshing(false);
+                    advViewPager.setCurrentItem(0);
+                    advPagerHandler.slidingPlayView(0);
                 }
             }
 
@@ -100,6 +113,27 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
+        getAdvData();
+    }
 
+    @Override
+    public void onAdvPagerMsgRespond(Message msg) {
+        if(msg.what == AdvPagerHandler.ADV_PAGER_MSG){
+            int currIndex = msg.arg1;
+
+            if(currIndex != advPagerAdapter.getCount() - 1){
+                currIndex++;
+            } else {
+                currIndex = 0;
+            }
+
+            advViewPager.setCurrentItem(currIndex);
+            advPagerHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    advPagerHandler.slidingPlayView(advViewPager.getCurrentItem());
+                }
+            }, AdvPagerHandler.DEFAULT_TIME);
+        }
     }
 }

@@ -3,7 +3,6 @@ package com.github.chaossss.ishuhui.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -24,29 +23,25 @@ public class AdvPagerAdapter extends PagerAdapter {
     private List<AdvModel.ListEntity> advs;
 
     public AdvPagerAdapter(Context context) {
-        this(context, null);
-    }
-
-    public AdvPagerAdapter(Context context, List<AdvModel.ListEntity> advs) {
-        this.advs = advs;
         this.context = context;
-        advWrappers = new ArrayList<>();
-
-        if(advs != null && advs.size() != 0){
-            for(int i = 0; i < advs.size(); i++){
-                advWrappers.add(new ImageView(context));
-            }
-        }
     }
 
     @Override
     public int getCount() {
-        return advWrappers == null ? 0 : advWrappers.size();
+        return advs == null ? 0 : advs.size();
     }
 
     public void updateAdvs(List<AdvModel.ListEntity> advs){
         this.advs = advs;
-        notifyDataSetChanged();
+
+        if(advs != null && advs.size() != 0){
+            advWrappers = new ArrayList<>();
+
+            for(int i = 0; i < advs.size(); i++){
+                advWrappers.add(new ImageView(context));
+            }
+            notifyDataSetChanged();
+        }
     }
 
     @Override
