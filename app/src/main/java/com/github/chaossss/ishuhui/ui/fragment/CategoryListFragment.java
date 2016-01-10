@@ -45,7 +45,11 @@ public class CategoryListFragment extends Fragment {
 
     public static CategoryListFragment newInstance(int type){
         CategoryListFragment categoryListFragment = new CategoryListFragment();
-        categoryListFragment.type = type;
+        if(type == CATEGORY_FIRST){
+            categoryListFragment.type = type;
+        } else {
+            categoryListFragment.type = type + 1;
+        }
         return categoryListFragment;
     }
 
@@ -79,7 +83,11 @@ public class CategoryListFragment extends Fragment {
                 super.onSuccess(result);
                 if (result != null) {
                     categoryListDatas = result.Return.List;
-                    categoryListAdapter.updateDatas(categoryListDatas);
+                    if(categoryListDatas.size() == 0){
+                        getCategoryData();
+                    } else {
+                        categoryListAdapter.updateDatas(categoryListDatas);
+                    }
                 }
             }
 

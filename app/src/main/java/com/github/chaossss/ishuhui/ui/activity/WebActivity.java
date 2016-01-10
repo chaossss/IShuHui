@@ -16,14 +16,13 @@ import com.github.chaossss.ishuhui.R;
  * Created by chaos on 2016/1/4.
  */
 public class WebActivity extends AppCompatActivity {
-
     public static final String EXTRA_URL = "extra_url";
     public static final String EXTRA_TITLE = "title";
 
-    WebView mWebView;
+    private WebView mWebView;
 
-    Context mContext;
-    String mUrl, mTitle;
+    private Context mContext;
+    private String mUrl, mTitle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
