@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.chaossss.ishuhui.R;
+import com.github.chaossss.ishuhui.domain.util.LogUtils;
 
 /**
  * Created by chaos on 2016/1/4.
@@ -20,18 +21,15 @@ public class WebActivity extends AppCompatActivity {
     public static final String EXTRA_TITLE = "title";
 
     private WebView mWebView;
-
-    private Context mContext;
-    private String mUrl, mTitle;
+    private String mUrl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
-        mContext = this;
+        mWebView = (WebView) findViewById(R.id.webView);
         mUrl = getIntent().getStringExtra(EXTRA_URL);
-        Log.i("url", "url----->" + mUrl);
-        mTitle = getIntent().getStringExtra(EXTRA_TITLE);
+        LogUtils.logI(this, mUrl);
 
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -51,8 +49,7 @@ public class WebActivity extends AppCompatActivity {
                 case KeyEvent.KEYCODE_BACK:
                     if (mWebView.canGoBack()) {
                         mWebView.goBack();
-                    }
-                    else {
+                    } else {
                         finish();
                     }
                     return true;
@@ -88,7 +85,6 @@ public class WebActivity extends AppCompatActivity {
     }
 
     private class MyWebClient extends WebViewClient {
-
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (url != null) view.loadUrl(url);
             return true;
