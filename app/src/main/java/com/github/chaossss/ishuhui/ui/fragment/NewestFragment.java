@@ -26,8 +26,8 @@ import java.util.List;
  */
 public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefreshListener {
     private RecyclerView recyclerView;
-    private PullRefreshLayout pullRefreshLayout;
     private NewestAdapter newestAdapter;
+    private PullRefreshLayout pullRefreshLayout;
     private List<AllBookModels.ReturnClazz.AllBook> newestList;
 
     @Override

@@ -45,17 +45,18 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <com.github.chaossss.ishuhui.ui.custom.NormalGridView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/comic_detail_comic_grid"
-            android:numColumns="3"
-            android:verticalSpacing="0.5dp"
-            android:horizontalSpacing="0.5dp"
-            android:background="#dfdfdf"
-            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:paddingTop="4dp"
+            android:clipToPadding="false"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp"
+            android:scrollbars="vertical"
+            android:scrollbarSize="2dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbarThumbVertical="@color/md_orange"/>
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton

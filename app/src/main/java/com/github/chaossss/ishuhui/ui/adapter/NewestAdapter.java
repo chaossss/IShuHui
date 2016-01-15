@@ -34,9 +34,6 @@ import java.util.List;
  * Created by chaos on 2016/1/4.
  */
 public class NewestAdapter extends RecyclerView.Adapter<NewestViewHolder> {
-    private static final String CHAPTER = "话";
-    private static final String DIVIDER = "  ";
-
     private Context context;
     private List<AllBookModels.ReturnClazz.AllBook> newestList;
 
@@ -67,7 +64,7 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestViewHolder> {
         holder.badgedView.setBadgeText("新");
         holder.subtitle.setText(allBook.LastChapter.Title);
         holder.updateTime.setText(allBook.LastChapter.RefreshTimeStr);
-        holder.title.setText(StringUtils.generateStr(allBook.Title + DIVIDER + allBook.LastChapter.ChapterNo + CHAPTER));
+        holder.title.setText(StringUtils.generateStr(allBook.Title + StringUtils.DIVIDER + allBook.LastChapter.ChapterNo + StringUtils.CHAPTER_SUFFIX_1));
 
         Glide.with(context).load(allBook.LastChapter.FrontCover).centerCrop().into(holder.cover);
 
@@ -80,8 +77,7 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestViewHolder> {
         holder.setOnNewestHolderClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handClick(ShuHuiURL.URL_IMG_CHAPTER + allBook.LastChapter.Id, allBook.LastChapter.Title);
-
+                handClick(ShuHuiURL.URL_IMG_CHAPTER + allBook.LastChapter.Id);
                 SPUtils.saveObject(allBook.Id, allBook.LastChapter.ChapterNo);
             }
         });
@@ -121,10 +117,9 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestViewHolder> {
         });
     }
 
-    private void handClick(String url,String title) {
+    private void handClick(String url) {
         Intent intent = new Intent(context, WebActivity.class);
         intent.putExtra(WebActivity.EXTRA_URL, url);
-        intent.putExtra(WebActivity.EXTRA_TITLE,title);
         context.startActivity(intent);
     }
 

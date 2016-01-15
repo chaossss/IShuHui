@@ -5,8 +5,12 @@ package com.github.chaossss.ishuhui.domain.util;
  */
 public class StringUtils {
     public static final String NO = "第 ";
-    public static final String CHAPTER = " 话";
     public static final String EMPTY_STR = "";
+    public static final String DIVIDER = "  ";
+    public static final String CHAPTER_SUFFIX_1 = " 话";
+    public static final String CHAPTER_SUFFIX_2 = " 卷";
+    public static final String CHAPTER_SUFFIX_3 = " SP";
+
     private static StringBuilder sb = new StringBuilder();
     private static StringUtils stringUtils = new StringUtils();
 
