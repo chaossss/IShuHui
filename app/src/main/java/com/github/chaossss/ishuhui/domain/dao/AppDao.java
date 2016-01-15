@@ -5,13 +5,12 @@ import com.github.chaossss.httplibrary.listener.BaseCallbackListener;
 import com.github.chaossss.ishuhui.domain.model.AdvModel;
 import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.domain.model.CategoryModel;
-import com.github.chaossss.ishuhui.domain.model.DetialComicBookModel;
+import com.github.chaossss.ishuhui.domain.model.ComicDetailModel;
 import com.github.chaossss.ishuhui.domain.model.LoginModel;
 import com.github.chaossss.ishuhui.domain.model.SearchComicModel;
 import com.github.chaossss.ishuhui.domain.model.SubscribeModel;
 import com.github.chaossss.ishuhui.domain.url.ShuHuiURL;
 import com.github.chaossss.ishuhui.domain.util.EncryptionUtils;
-import com.squareup.okhttp.HttpUrl;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -149,7 +148,7 @@ public class AppDao {
         Http.post(ShuHuiURL.URL_SEARCH_DATA, map, listener);
     }
 
-    public void getBookComicData(String id,String PageIndex,BaseCallbackListener<DetialComicBookModel> listener)
+    public void getBookComicData(String id,String PageIndex,BaseCallbackListener<ComicDetailModel> listener)
     {
         Map<String,String> map = createMap();
         map.put("id",id);

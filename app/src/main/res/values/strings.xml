@@ -3,6 +3,8 @@
     <string name="app_name">鼠绘漫画</string>
     <string name="app_version">Version 1.0</string>
 
+    <!-- ComicDetailActivity string. -->
+
     <!-- AboutActivity string. -->
     <string name="about_introduce_and_help">介绍与帮助</string>
     <string name="about_introduce">组织介绍\n鼠绘漫画网是鼠绘汉化组的官方网站，组织前身为海贼王吧鼠绘汉化组。经过几年发展已经成为国内较为大型的汉化组。且整体水平优秀，是目前国内动漫类翻译爱好人员的最大集中地之一。

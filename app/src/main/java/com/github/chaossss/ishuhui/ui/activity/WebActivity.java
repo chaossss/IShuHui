@@ -18,18 +18,16 @@ import com.github.chaossss.ishuhui.domain.util.LogUtils;
  */
 public class WebActivity extends AppCompatActivity {
     public static final String EXTRA_URL = "extra_url";
-    public static final String EXTRA_TITLE = "title";
 
     private WebView mWebView;
-    private String mUrl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         mWebView = (WebView) findViewById(R.id.webView);
-        mUrl = getIntent().getStringExtra(EXTRA_URL);
-        LogUtils.logI(this, mUrl);
+        String url = getIntent().getStringExtra(EXTRA_URL);
+        LogUtils.logI(this, url);
 
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -40,7 +38,7 @@ public class WebActivity extends AppCompatActivity {
         mWebView.setWebChromeClient(new ChromeClient());
         mWebView.setWebViewClient(new MyWebClient());
 
-        mWebView.loadUrl(mUrl);
+        mWebView.loadUrl(url);
     }
 
     @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
