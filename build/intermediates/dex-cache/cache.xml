@@ -2,11 +2,18 @@
 <items version="2" >
 
     <item
-        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\me.relex\circleindicator\1.1.5\jars\classes.jar"
+        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\com.melnykov\floatingactionbutton\1.3.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="3505b86b653bb367105403d204cc7752142d86c1">
-        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-a09809241077b7c60f859a5a4889376c9b75463c.jar" />
+        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
+        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-595487c5ed9264d8dbf3dbb7bb02c7e075316efe.jar" />
+    </item>
+    <item
+        jar="C:\Users\chaos\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\library-2.4.0-254806f2ebdc039d10ad5cb1f7210b810322ecaa.jar" />
     </item>
 
 </items>

@@ -8,19 +8,18 @@
     app:cardCornerRadius="0dp"
     app:cardElevation="0.75dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_holder"
-        android:orientation="vertical">
+        android:background="@drawable/bg_holder" >
         <FrameLayout
             android:id="@+id/holder_comic_detail_wrapper"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="130dp">
             <ImageView
                 android:id="@+id/holder_comic_detail_cover"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
 
             <TextView
@@ -31,7 +30,6 @@
                 android:ellipsize="end"
                 android:gravity="end"
                 android:layout_gravity="bottom"
-                android:padding="4dp"
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textSize="12sp"/>
@@ -39,18 +37,23 @@
 
         <TextView
             android:id="@+id/holder_comic_detail_chapter_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            android:tag="Hover"
+            android:layout_below="@+id/holder_comic_detail_wrapper"
+            android:layout_alignParentRight="true"
+            android:text="dsadsadsada"
             android:textColor="@color/black"
             android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/holder_comic_detail_update_time"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/holder_comic_detail_wrapper"
+            android:layout_alignParentLeft="true"
+            android:text="dsadsadsada"
             android:padding="4dp"
             android:textSize="12sp"/>
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

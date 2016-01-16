@@ -39,35 +39,27 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/comic_detail_nested_scroll_view"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/comic_detail_comic_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/comic_detail_comic_grid"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="4dp"
-            android:clipToPadding="false"
-            android:layout_marginRight="6dp"
-            android:layout_marginLeft="6dp"
-            android:scrollbars="vertical"
-            android:scrollbarSize="2dp"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbarThumbVertical="@color/md_orange"/>
-    </android.support.v4.widget.NestedScrollView>
+        android:clipToPadding="false"
+        android:layout_margin="8dp"
+        android:scrollbars="vertical"
+        android:scrollbarSize="2dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarThumbVertical="@color/md_orange"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.melnykov.fab.FloatingActionButton
         android:id="@+id/comic_detail_subscribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_add_white_24dp"
-        app:backgroundTint="@color/md_red"
-        app:rippleColor="@color/md_orange"
+        android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/fab_margin"
-        android:clickable="true"
-        app:layout_anchor="@id/comic_detail_coordinator_layout"
-        app:layout_anchorGravity="bottom|right|end"/>
+        android:src="@mipmap/ic_add_white_24dp"
+        app:fab_shadow="true"
+        app:fab_colorNormal="@color/md_red"
+        app:fab_colorRipple="@color/md_orange"
+        android:foregroundGravity="bottom|right"/>
 </android.support.design.widget.CoordinatorLayout>

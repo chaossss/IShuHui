@@ -41,7 +41,7 @@ public class ComicGridAdapter extends RecyclerView.Adapter<ComicDetailGridHolder
         final String url = ShuHuiURL.URL_IMG_CHAPTER + comicGridList.get(position).Id;
 
         holder.subtitle.setText(comicGridList.get(position).Title);
-        holder.updateTime.setText(comicGridList.get(position).RefreshTime);
+        holder.updateTime.setText(comicGridList.get(position).RefreshTimeStr);
         switch(comicGridList.get(position).ChapterType){
             case 0:
                 holder.title.setText(StringUtils.generateStr(comicGridList.get(position).Sort + StringUtils.CHAPTER_SUFFIX_1));

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.ishuhui.domain.model.CategoryModel;
 import com.github.chaossss.ishuhui.domain.util.StringUtils;
+import com.github.chaossss.ishuhui.ui.activity.ComicDetailActivity;
 import com.github.chaossss.ishuhui.ui.viewholder.CategoryListHolder;
 
 import java.util.List;
@@ -34,13 +35,21 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListHolder
     }
 
     @Override
-    public void onBindViewHolder(CategoryListHolder holder, int position) {
+    public void onBindViewHolder(CategoryListHolder holder, final int position) {
         holder.title.setText(categoryListDatas.get(position).Title);
         holder.intro.setText(categoryListDatas.get(position).Explain);
         holder.author.setText(categoryListDatas.get(position).Author);
         holder.chapter.setText(StringUtils.generateStr(StringUtils.NO,
-                String.valueOf(categoryListDatas.get(position).LastChapterNo), StringUtils.CHAPTER));
+                String.valueOf(categoryListDatas.get(position).LastChapterNo), StringUtils.CHAPTER_SUFFIX_1));
         Glide.with(context).load(categoryListDatas.get(position).FrontCover).centerCrop().into(holder.cover);
+        holder.setOnCategoryListHolderClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ComicDetailActivity.class);
+                intent.putExtra(ComicDetailActivity.COMIC_ID, String.valueOf(categoryListDatas.get(position).Id));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
