@@ -10,7 +10,7 @@
             android:icon="@mipmap/ic_dashboard_black_48dp"
             android:title="@string/drawer_divide_comic" />
         <item
-            android:id="@+id/nav_subscribe"
+            android:id="@+id/nav_selected"
             android:icon="@mipmap/ic_stars_black_48dp"
             android:title="@string/drawer_selected_comic" />
 

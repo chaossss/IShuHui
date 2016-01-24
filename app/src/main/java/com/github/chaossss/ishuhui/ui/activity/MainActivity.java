@@ -15,26 +15,23 @@ import android.view.MenuItem;
 import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.ishuhui.ui.fragment.CategoryFragment;
 import com.github.chaossss.ishuhui.ui.fragment.NewestFragment;
+import com.github.chaossss.ishuhui.ui.fragment.SelectedFragment;
+import com.github.chaossss.ishuhui.ui.fragment.UpdateWeeklyFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final int TAG_HOME = 0x1;
     public static final String DRAWER_NEWEST = "Home";
     public static final String DRAWER_CATEGORY = "Category";
     public static final String DRAWER_UPDATE = "Update";
-    public static final String DRAWER_SUBSCRIBE = "Subscribe";
-    public static final String DRAWER_ABOUT = "Subscribe";
+    public static final String DRAWER_Selected = "Selected";
 
     private String hideTag;
 
     private NewestFragment newestFragment;
     private CategoryFragment categoryFragment;
+    private SelectedFragment selectedFragment;
+    private UpdateWeeklyFragment updateWeeklyFragment;
 
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
-
-    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         initFragments();
 
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_menu);
@@ -74,21 +71,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initFragments(){
         newestFragment = new NewestFragment();
         categoryFragment = new CategoryFragment();
+        selectedFragment = new SelectedFragment();
+        updateWeeklyFragment = new UpdateWeeklyFragment();
 
         switchFragment(DRAWER_NEWEST, newestFragment);
     }
 
-    /**
-     * 选择不同的Frament
-     *
-     * @param tag
-     * @param mFragment
-     */
     public void switchFragment(String tag, Fragment mFragment) {
         if (hideTag != null && hideTag.equals(tag)) return;
 
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         Fragment tagFragment = fragmentManager.findFragmentByTag(tag);
 
@@ -120,9 +113,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_category:
                 switchFragment(DRAWER_CATEGORY, categoryFragment);
                 break;
-            case R.id.nav_update:
+            case R.id.nav_selected:
+                switchFragment(DRAWER_Selected, selectedFragment);
                 break;
-            case R.id.nav_subscribe:
+            case R.id.nav_update:
+                switchFragment(DRAWER_UPDATE, updateWeeklyFragment);
                 break;
             case R.id.nav_about:
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
