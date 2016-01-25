@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final String DRAWER_NEWEST = "Home";
     public static final String DRAWER_CATEGORY = "Category";
     public static final String DRAWER_UPDATE = "Update";
-    public static final String DRAWER_Selected = "Selected";
+    public static final String DRAWER_SELECTED = "Selected";
 
     private String hideTag;
 
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switchFragment(DRAWER_CATEGORY, categoryFragment);
                 break;
             case R.id.nav_selected:
-                switchFragment(DRAWER_Selected, selectedFragment);
+                switchFragment(DRAWER_SELECTED, selectedFragment);
                 break;
             case R.id.nav_update:
                 switchFragment(DRAWER_UPDATE, updateWeeklyFragment);

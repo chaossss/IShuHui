@@ -21,9 +21,6 @@ import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by chaos on 2016/1/24.
- */
 public class UpdateWeeklyFragment extends Fragment implements PullRefreshLayout.OnRefreshListener {
     private RecyclerView recyclerView;
     private NewestAdapter updateWeeklyAdapter;

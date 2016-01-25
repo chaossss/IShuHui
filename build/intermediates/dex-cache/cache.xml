@@ -2,11 +2,18 @@
 <items version="2" >
 
     <item
-        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\com.melnykov\floatingactionbutton\1.3.0\jars\classes.jar"
+        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\com.makeramen\roundedimageview\2.2.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
-        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-595487c5ed9264d8dbf3dbb7bb02c7e075316efe.jar" />
+        sha1="814fc0c3ec69a944add398217d90077301501a74">
+        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-407e44764daebe6316fb5463511b7f5130115594.jar" />
+    </item>
+    <item
+        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\com.github.chaossss\PianoView\1.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b9c57dbd327c31246a3628a6971cf2f6ce290986">
+        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-2f2c51026facbafc77ff43a136ba4cf3fd5168e5.jar" />
     </item>
     <item
         jar="C:\Users\chaos\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
@@ -14,6 +21,13 @@
         revision="23.0.2"
         sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
         <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\library-2.4.0-254806f2ebdc039d10ad5cb1f7210b810322ecaa.jar" />
+    </item>
+    <item
+        jar="D:\Android\Github\IShuHui\app\build\intermediates\exploded-aar\com.melnykov\floatingactionbutton\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
+        <dex dex="D:\Android\Github\IShuHui\app\build\intermediates\pre-dexed\debug\classes-595487c5ed9264d8dbf3dbb7bb02c7e075316efe.jar" />
     </item>
 
 </items>
