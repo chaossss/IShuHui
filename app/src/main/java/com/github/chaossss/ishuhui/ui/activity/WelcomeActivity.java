@@ -14,24 +14,35 @@ import com.github.chaossss.ishuhui.domain.util.SPUtils;
 import com.github.chaossss.ishuhui.ui.presenter.welcome.WelcomePresenter;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Welcome page that shows IShuHui App's base info
  * Created by chaos on 2016/1/2.
  */
 public class WelcomeActivity extends AppCompatActivity implements Animation.AnimationListener, WelcomePresenter.View {
+    @Bind(R.id.welcome_splash)
+    ImageView splash;
     private WelcomePresenter welcomePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        ButterKnife.bind(this);
 
-        ImageView splash = (ImageView) findViewById(R.id.welcome_splash);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.splash);
         animation.setAnimationListener(this);
         splash.setAnimation(animation);
 
         welcomePresenter = new WelcomePresenter(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void handLogin(){

@@ -18,6 +18,9 @@ import com.github.chaossss.ishuhui.ui.fragment.NewestFragment;
 import com.github.chaossss.ishuhui.ui.fragment.SelectedFragment;
 import com.github.chaossss.ishuhui.ui.fragment.UpdateWeeklyFragment;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String DRAWER_NEWEST = "Home";
     public static final String DRAWER_CATEGORY = "Category";
@@ -31,18 +34,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SelectedFragment selectedFragment;
     private UpdateWeeklyFragment updateWeeklyFragment;
 
-    private DrawerLayout drawerLayout;
+    @Bind(R.id.main_toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+    @Bind(R.id.nav_view)
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
         initFragments();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_menu);
@@ -66,6 +70,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void initFragments(){

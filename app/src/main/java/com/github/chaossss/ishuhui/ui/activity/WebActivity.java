@@ -11,40 +11,42 @@ import android.webkit.WebViewClient;
 import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
 
-/**
- * Created by chaos on 2016/1/4.
- */
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class WebActivity extends AppCompatActivity {
     public static final String EXTRA_URL = "extra_url";
 
-    private WebView mWebView;
+    @Bind(R.id.webView)
+    WebView webView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
-        mWebView = (WebView) findViewById(R.id.webView);
+        ButterKnife.bind(this);
+
         String url = getIntent().getStringExtra(EXTRA_URL);
         LogUtils.logI(this, url);
 
-        WebSettings settings = mWebView.getSettings();
+        WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setLoadWithOverviewMode(true);
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setSupportZoom(true);
-        mWebView.setWebChromeClient(new ChromeClient());
-        mWebView.setWebViewClient(new MyWebClient());
+        webView.setWebChromeClient(new ChromeClient());
+        webView.setWebViewClient(new MyWebClient());
 
-        mWebView.loadUrl(url);
+        webView.loadUrl(url);
     }
 
     @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (keyCode) {
                 case KeyEvent.KEYCODE_BACK:
-                    if (mWebView.canGoBack()) {
-                        mWebView.goBack();
+                    if (webView.canGoBack()) {
+                        webView.goBack();
                     } else {
                         finish();
                     }
@@ -56,17 +58,18 @@ public class WebActivity extends AppCompatActivity {
 
     @Override protected void onDestroy() {
         super.onDestroy();
-        if (mWebView != null) mWebView.destroy();
+        ButterKnife.unbind(this);
+        if (webView != null) webView.destroy();
     }
 
     @Override protected void onPause() {
-        if (mWebView != null) mWebView.onPause();
+        if (webView != null) webView.onPause();
         super.onPause();
     }
 
     @Override protected void onResume() {
         super.onResume();
-        if (mWebView != null) mWebView.onResume();
+        if (webView != null) webView.onResume();
     }
 
     private class ChromeClient extends WebChromeClient {

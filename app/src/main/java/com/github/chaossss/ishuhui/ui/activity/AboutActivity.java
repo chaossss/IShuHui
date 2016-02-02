@@ -1,7 +1,6 @@
 package com.github.chaossss.ishuhui.ui.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -9,17 +8,17 @@ import android.view.MenuItem;
 
 import com.github.chaossss.ishuhui.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-/**
- * Created by chaos on 2016/1/2.
- */
 public class AboutActivity extends AppCompatActivity {
+    @Bind(R.id.about_toolbar)
+    Toolbar toolbar;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.about_toolbar);
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.about_collapsing_toolbar);
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
         if(getSupportActionBar() != null){
@@ -46,5 +45,11 @@ public class AboutActivity extends AppCompatActivity {
 
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 }

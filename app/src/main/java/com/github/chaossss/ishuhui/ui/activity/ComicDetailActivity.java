@@ -24,16 +24,23 @@ import com.melnykov.fab.FloatingActionButton;
 
 import java.util.List;
 
-/**
- * Created by chaos on 2016/1/15.
- */
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class ComicDetailActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String COMIC_ID = "comic_id";
     private String comicID;
 
-    private ImageView comicCover;
-    private FloatingActionButton subscribe;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
+    @Bind(R.id.comic_detail_toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.comic_detail_comic_cover)
+    ImageView comicCover;
+    @Bind(R.id.comic_detail_comic_grid)
+    RecyclerView comicGrid;
+    @Bind(R.id.comic_detail_subscribe)
+    FloatingActionButton subscribe;
+    @Bind(R.id.comic_detail_collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     private int pageIndex;
     private boolean isLoadMore;
@@ -47,12 +54,7 @@ public class ComicDetailActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comic_detail);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.comic_detail_toolbar);
-        comicCover = (ImageView) findViewById(R.id.comic_detail_comic_cover);
-        RecyclerView comicGrid = (RecyclerView) findViewById(R.id.comic_detail_comic_grid);
-        subscribe = (FloatingActionButton) findViewById(R.id.comic_detail_subscribe);
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.comic_detail_collapsing_toolbar);
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
         subscribe.setOnClickListener(this);
@@ -84,6 +86,12 @@ public class ComicDetailActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void getComicDetailData(){
