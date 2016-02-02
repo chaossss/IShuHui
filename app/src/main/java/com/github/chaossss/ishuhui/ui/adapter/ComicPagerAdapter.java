@@ -4,8 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.github.chaossss.ishuhui.domain.util.StringUtils;
-import com.github.chaossss.ishuhui.ui.fragment.CategoryFragment;
 import com.github.chaossss.ishuhui.ui.fragment.CategoryListFragment;
 
 import java.util.ArrayList;

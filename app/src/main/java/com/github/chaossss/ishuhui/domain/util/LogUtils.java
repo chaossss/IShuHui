@@ -14,7 +14,7 @@ public class LogUtils {
     }
 
     private String generateTag(Object object){
-        return object.getClass().getCanonicalName();
+        return object.getClass().getSimpleName();
     }
 
     public static void logI(Object object, String... strs){

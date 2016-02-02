@@ -1,6 +1,5 @@
 package com.github.chaossss.ishuhui.domain.util;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 

@@ -2,19 +2,13 @@ package com.github.chaossss.ishuhui.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.github.chaossss.httplibrary.listener.BaseCallbackListener;
 import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.ishuhui.domain.dao.AppDao;
@@ -27,7 +21,6 @@ import com.github.chaossss.ishuhui.ui.activity.WebActivity;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 import com.github.chaossss.ishuhui.ui.viewholder.NewestViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

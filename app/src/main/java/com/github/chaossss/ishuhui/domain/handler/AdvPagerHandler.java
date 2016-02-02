@@ -2,7 +2,6 @@ package com.github.chaossss.ishuhui.domain.handler;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.ViewPager;
 
 /**
  * Created by chaos on 2016/1/9.

@@ -9,13 +9,11 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.github.chaossss.ishuhui.R;
-import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.domain.model.ComicDetailModel;
 import com.github.chaossss.ishuhui.domain.url.ShuHuiURL;
 import com.github.chaossss.ishuhui.domain.util.StringUtils;
 import com.github.chaossss.ishuhui.ui.activity.WebActivity;
 import com.github.chaossss.ishuhui.ui.viewholder.ComicDetailGridHolder;
-import com.github.chaossss.ishuhui.ui.viewholder.NewestViewHolder;
 
 import java.util.List;
 
