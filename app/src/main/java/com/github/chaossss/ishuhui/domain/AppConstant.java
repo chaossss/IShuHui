@@ -26,5 +26,19 @@ public class AppConstant {
     public static final String LOGIN_CACHE_NAME = "key_login";
     public static final String LOGIN_RESULT = "login result----->";
 
+    /**
+     * others' result constant
+     */
     public static final String GET_NEWEST_COMIC_RESULT = "get newest comic result----->";
+    public static final String GET_COMIC_UPDATED_THIS_WEEK_RESULT = "get comic updated this week result----->";
+    public static final String GET_SELECTED_COMIC_RESULT = "get selected comic result----->";
+
+    /**
+     * comic detail & subscribe constant
+     */
+    public static final String SUBSCRIBE_SUCCESS = "Subscribe success!";
+    public static final String SUBSCRIBE_CANCEL = "Subscribe canceled!";
+    public static final String SUBSCRIBE_FAIL = "Subscribe failed!";
+    public static final String SUBSCRIBE_RESULT = "subscribe result----->";
+    public static final String COMIC_DETAIL_RESULT = "get comic detail result----->";
 }

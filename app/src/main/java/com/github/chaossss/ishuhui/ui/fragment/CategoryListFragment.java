@@ -20,9 +20,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by chaossss on 2016/1/9.
- */
 public class CategoryListFragment extends Fragment {
     public static final int CATEGORY_FIRST = 0;
     public static final int CATEGORY_SECOND = 1;

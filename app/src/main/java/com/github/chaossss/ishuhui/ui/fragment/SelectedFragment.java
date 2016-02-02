@@ -13,6 +13,8 @@ import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.ishuhui.domain.dao.AppDao;
 import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.ui.adapter.SelectedPagerAdapter;
+import com.github.chaossss.ishuhui.ui.presenter.selected.SelectedPresenter;
+import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 import com.github.chaossss.pianoview.PianoAdapter;
 import com.github.chaossss.pianoview.PianoItemListener;
 import com.github.chaossss.pianoview.PianoView;
@@ -23,11 +25,13 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SelectedFragment extends Fragment implements PianoItemListener, ViewPager.OnPageChangeListener {
+public class SelectedFragment extends Fragment implements SelectedPresenter.View, PianoItemListener, ViewPager.OnPageChangeListener {
     @Bind(R.id.selected_piano_view)
     PianoView pianoView;
     @Bind(R.id.selected_pager)
     ViewPager selectedPager;
+
+    private SelectedPresenter presenter;
 
     private SelectedPagerAdapter selectedPagerAdapter;
 
@@ -37,6 +41,9 @@ public class SelectedFragment extends Fragment implements PianoItemListener, Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        presenter = new SelectedPresenter(this);
+
         pianoIconList = new ArrayList<>();
         selectedPagerAdapter = new SelectedPagerAdapter(getContext());
     }
@@ -54,41 +61,20 @@ public class SelectedFragment extends Fragment implements PianoItemListener, Vie
         pianoAdapter = new PianoAdapter(getContext(), pianoView);
         pianoView.setAdapter(pianoAdapter);
 
-        getSelectedComic();
-
         return root;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        presenter.getSelectedComic();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-    }
-
-    private void getSelectedComic(){
-        AppDao.getInstance().subscribeByUser("0", new BaseCallbackListener<AllBookModels>() {
-            @Override
-            public void onStringResult(String result) {
-                super.onStringResult(result);
-            }
-
-            @Override
-            public void onSuccess(AllBookModels result) {
-                super.onSuccess(result);
-
-                for(AllBookModels.ReturnClazz.AllBook comic : result.Return.List){
-                    pianoIconList.add(comic.FrontCover);
-                }
-                pianoAdapter.addIconUrlList(pianoIconList);
-                selectedPagerAdapter.addSelectedComicList(result.Return.List);
-                pianoView.showPianoAtPosition(0);
-            }
-
-            @Override
-            public void onError(Exception e) {
-                super.onError(e);
-            }
-        });
     }
 
     @Override
@@ -115,5 +101,20 @@ public class SelectedFragment extends Fragment implements PianoItemListener, Vie
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public void onSelectedComicGotSuccess(List<AllBookModels.ReturnClazz.AllBook> selectedComicList) {
+        for(AllBookModels.ReturnClazz.AllBook comic : selectedComicList){
+            pianoIconList.add(comic.FrontCover);
+        }
+        pianoAdapter.addIconUrlList(pianoIconList);
+        selectedPagerAdapter.addSelectedComicList(selectedComicList);
+        pianoView.showPianoAtPosition(0);
+    }
+
+    @Override
+    public void onSelectedComicGotFail(String errorInfo) {
+        ToastUtils.showToast(getContext(), errorInfo);
     }
 }

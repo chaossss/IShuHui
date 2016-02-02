@@ -10,15 +10,14 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.github.chaossss.httplibrary.listener.BaseCallbackListener;
 import com.github.chaossss.ishuhui.R;
+import com.github.chaossss.ishuhui.domain.AppConstant;
 import com.github.chaossss.ishuhui.domain.BaseApplication;
-import com.github.chaossss.ishuhui.domain.dao.AppDao;
 import com.github.chaossss.ishuhui.domain.model.ComicDetailModel;
-import com.github.chaossss.ishuhui.domain.model.SubscribeModel;
 import com.github.chaossss.ishuhui.domain.util.SPUtils;
 import com.github.chaossss.ishuhui.domain.util.StringUtils;
 import com.github.chaossss.ishuhui.ui.adapter.ComicGridAdapter;
+import com.github.chaossss.ishuhui.ui.presenter.comic_detail.ComicDetailPresenter;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -27,7 +26,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ComicDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class ComicDetailActivity extends AppCompatActivity implements ComicDetailPresenter.View, View.OnClickListener {
     public static final String COMIC_ID = "comic_id";
     private String comicID;
 
@@ -41,6 +40,8 @@ public class ComicDetailActivity extends AppCompatActivity implements View.OnCli
     FloatingActionButton subscribe;
     @Bind(R.id.comic_detail_collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
+
+    private ComicDetailPresenter presenter;
 
     private int pageIndex;
     private boolean isLoadMore;
@@ -56,6 +57,8 @@ public class ComicDetailActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_comic_detail);
         ButterKnife.bind(this);
 
+        presenter = new ComicDetailPresenter(this);
+
         setSupportActionBar(toolbar);
         subscribe.setOnClickListener(this);
         comicGridAdapter = new ComicGridAdapter(this);
@@ -64,7 +67,7 @@ public class ComicDetailActivity extends AppCompatActivity implements View.OnCli
         sgm = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         comicGrid.setLayoutManager(sgm);
         comicGrid.setAdapter(comicGridAdapter);
-        getComicDetailData();
+        presenter.getComicDetail(comicID, String.valueOf(pageIndex));
 
         subscribe.attachToRecyclerView(comicGrid);
         comicGrid.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -79,7 +82,7 @@ public class ComicDetailActivity extends AppCompatActivity implements View.OnCli
                     subscribe.hide();
 
                     if(lastItem >= sgm.getItemCount() / 3 * 2 && isLoadMore){
-                        getComicDetailData();
+                        presenter.getComicDetail(comicID, String.valueOf(pageIndex));
                     }
                 } else {
                     subscribe.show();
@@ -92,16 +95,6 @@ public class ComicDetailActivity extends AppCompatActivity implements View.OnCli
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-    }
-
-    private void getComicDetailData(){
-        AppDao.getInstance().getBookComicData(comicID, String.valueOf(pageIndex), new BaseCallbackListener<ComicDetailModel>() {
-            @Override
-            public void onSuccess(ComicDetailModel result) {
-                super.onSuccess(result);
-                showView(result);
-            }
-        });
     }
 
     private void showView(ComicDetailModel comicDetailModel) {
@@ -129,33 +122,42 @@ public class ComicDetailActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
+        subscribeComic();
+    }
+
+    private void subscribeComic(){
         if(!StringUtils.isValid(comicID)) {
             return;
         }
 
-        AppDao.getInstance().subscribeBook(comicID, isSubscribe, new BaseCallbackListener<SubscribeModel>() {
+        presenter.subscribeComic(comicID, isSubscribe);
+    }
 
-            @Override
-            public void onSuccess(SubscribeModel result) {
-                super.onSuccess(result);
-                if (!isSubscribe) {
-                    ToastUtils.showToast(ComicDetailActivity.this, "订阅成功");
-                    SPUtils.saveObject(BaseApplication.UserInfo.email + "id" + comicID, comicID);
-                    subscribe.setImageResource(R.mipmap.ic_done);
-                    isSubscribe = true;
-                } else {
-                    ToastUtils.showToast(ComicDetailActivity.this, "已取消订阅");
-                    SPUtils.saveObject(BaseApplication.UserInfo.email + "id" + comicID, "-2");
-                    subscribe.setImageResource(R.mipmap.ic_add_white_24dp);
-                    isSubscribe = false;
-                }
-            }
+    @Override
+    public void onComicDetailGotSuccess(ComicDetailModel comicDetailModel) {
+        showView(comicDetailModel);
+    }
 
-            @Override
-            public void onError(Exception e) {
-                super.onError(e);
-                ToastUtils.showToast(ComicDetailActivity.this, "订阅失败");
-            }
-        });
+    @Override
+    public void onComicDetailGotFail(String errorInfo) {
+        ToastUtils.showToast(this, errorInfo);
+    }
+
+    @Override
+    public void onComicSubscribedSuccess(boolean isSubscribed) {
+        if (isSubscribed) {
+            ToastUtils.showToast(this, AppConstant.SUBSCRIBE_SUCCESS);
+            subscribe.setImageResource(R.mipmap.ic_done);
+            isSubscribe = true;
+        } else {
+            ToastUtils.showToast(this, AppConstant.SUBSCRIBE_CANCEL);
+            subscribe.setImageResource(R.mipmap.ic_add_white_24dp);
+            isSubscribe = false;
+        }
+    }
+
+    @Override
+    public void onComicSubscribedFail(String errorInfo) {
+        ToastUtils.showToast(this, errorInfo);
     }
 }

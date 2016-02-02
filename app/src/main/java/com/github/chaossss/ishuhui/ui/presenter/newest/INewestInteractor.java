@@ -5,5 +5,5 @@ package com.github.chaossss.ishuhui.ui.presenter.newest;
  * Created by chaossss on 2016/2/2.
  */
 public interface INewestInteractor {
-    void getNewestComic(OnNewestComicGotListener onNewestComicGotListener);
+    void getNewestComic(OnNewestComicGotListener listener);
 }

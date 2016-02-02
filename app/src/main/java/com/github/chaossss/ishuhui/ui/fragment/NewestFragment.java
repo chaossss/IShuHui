@@ -10,11 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.baoyz.widget.PullRefreshLayout;
-import com.github.chaossss.httplibrary.listener.BaseCallbackListener;
 import com.github.chaossss.ishuhui.R;
-import com.github.chaossss.ishuhui.domain.dao.AppDao;
 import com.github.chaossss.ishuhui.domain.model.AllBookModels;
-import com.github.chaossss.ishuhui.domain.util.LogUtils;
 import com.github.chaossss.ishuhui.ui.adapter.NewestAdapter;
 import com.github.chaossss.ishuhui.ui.presenter.newest.NewestPresenter;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
@@ -25,9 +22,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by chaossss on 2016/1/4.
- */
 public class NewestFragment extends Fragment implements NewestPresenter.View, PullRefreshLayout.OnRefreshListener {
     @Bind(R.id.newest_newest_list)
     RecyclerView recyclerView;
@@ -92,5 +86,6 @@ public class NewestFragment extends Fragment implements NewestPresenter.View, Pu
     @Override
     public void onNewestComicGotFail(String errorInfo) {
         pullRefreshLayout.setRefreshing(false);
+        ToastUtils.showToast(getContext(), errorInfo);
     }
 }

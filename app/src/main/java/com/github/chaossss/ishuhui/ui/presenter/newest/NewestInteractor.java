@@ -12,7 +12,7 @@ import com.github.chaossss.ishuhui.domain.util.LogUtils;
  */
 public class NewestInteractor implements INewestInteractor {
     @Override
-    public void getNewestComic(final OnNewestComicGotListener onNewestComicGotListener) {
+    public void getNewestComic(final OnNewestComicGotListener listener) {
         AppDao.getInstance().getAllBook(new BaseCallbackListener<AllBookModels>() {
             @Override
             public void onStringResult(String result) {
@@ -23,14 +23,14 @@ public class NewestInteractor implements INewestInteractor {
             @Override
             public void onSuccess(AllBookModels result) {
                 super.onSuccess(result);
-                onNewestComicGotListener.onNewestComicGotSuccess(result.Return.List);
+                listener.onNewestComicGotSuccess(result.Return.List);
             }
 
             @Override
             public void onError(Exception e) {
                 super.onError(e);
-                onNewestComicGotListener.onNewestComicGotFail(AppConstant.NET_RESPONSE_ERROR);
-                LogUtils.logI(onNewestComicGotListener, AppConstant.EXCEPTION + e.toString());
+                listener.onNewestComicGotFail(AppConstant.NET_RESPONSE_ERROR);
+                LogUtils.logI(listener, AppConstant.EXCEPTION + e.toString());
             }
         });
     }

@@ -25,9 +25,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.relex.circleindicator.CircleIndicator;
 
-/**
- * Created by chaossss on 2016/1/8.
- */
 public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRefreshListener, AdvPagerHandler.AdvPagerMsgListener {
     @Bind(R.id.category_tab)
     TabLayout tabLayout;
