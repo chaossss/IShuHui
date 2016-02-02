@@ -6,7 +6,8 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
- * Created by chaos on 2016/2/2.
+ * Presenter helps NewestFragment implement it's login function
+ * Created by chaossss on 2016/2/2.
  */
 public class NewestPresenter implements OnNewestComicGotListener {
     private WeakReference<View> view;

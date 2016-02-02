@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 
 /**
- * Created by chaos on 2016/1/9.
+ * Created by chaossss on 2016/1/9.
  */
 public class AdvPagerHandler extends Handler {
     public static final int DEFAULT_TIME = 6_000;

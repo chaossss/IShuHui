@@ -7,7 +7,8 @@ import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
 
 /**
- * Created by chaos on 2016/2/2.
+ * Interactor that helps NewestFragment implement login function
+ * Created by chaossss on 2016/2/2.
  */
 public class NewestInteractor implements INewestInteractor {
     @Override

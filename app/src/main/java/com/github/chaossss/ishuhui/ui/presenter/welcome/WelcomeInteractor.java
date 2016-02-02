@@ -10,8 +10,8 @@ import com.github.chaossss.ishuhui.domain.util.LogUtils;
 import com.github.chaossss.ishuhui.domain.util.SPUtils;
 
 /**
- * Interactor that help UI finish data relating staff
- * Created by chaos on 2016/2/2.
+ * Interactor that helps WelcomeActivity implement login function
+ * Created by chaossss on 2016/2/2.
  */
 public class WelcomeInteractor implements IWelcomeInteractor {
 

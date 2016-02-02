@@ -3,8 +3,8 @@ package com.github.chaossss.ishuhui.ui.presenter.welcome;
 import java.lang.ref.WeakReference;
 
 /**
- * Presenter helps WelcomeActivity's finish it's login function
- * Created by chaos on 2016/2/2.
+ * Presenter helps WelcomeActivity implement it's login function
+ * Created by chaossss on 2016/2/2.
  */
 public class WelcomePresenter implements OnLoginFinishedListener {
     private WeakReference<View> view;

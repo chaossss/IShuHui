@@ -5,7 +5,8 @@ import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import java.util.List;
 
 /**
- * Created by chaos on 2016/2/2.
+ * NewestFragment's abstract data operation
+ * Created by chaossss on 2016/2/2.
  */
 public interface OnNewestComicGotListener {
     void onNewestComicGotSuccess(List<AllBookModels.ReturnClazz.AllBook> newestComicList);
