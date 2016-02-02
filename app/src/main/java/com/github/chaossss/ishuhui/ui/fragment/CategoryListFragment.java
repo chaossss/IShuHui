@@ -17,6 +17,9 @@ import com.github.chaossss.ishuhui.ui.adapter.CategoryListAdapter;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by chaos on 2016/1/9.
  */
@@ -35,7 +38,8 @@ public class CategoryListFragment extends Fragment {
     private int type;
     private List<CategoryModel.ReturnEntity.ListEntity> categoryListDatas;
 
-    private RecyclerView categoryList;
+    @Bind(R.id.category_list_list)
+    RecyclerView categoryList;
     private CategoryListAdapter categoryListAdapter;
 
     public CategoryListFragment() {
@@ -55,8 +59,10 @@ public class CategoryListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_category_list, container, false);
-        categoryList = (RecyclerView) v.findViewById(R.id.category_list_list);
+        ButterKnife.bind(this, v);
+
         categoryList.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return v;
     }
 
@@ -67,6 +73,12 @@ public class CategoryListFragment extends Fragment {
         getCategoryData();
         categoryListAdapter = new CategoryListAdapter(getContext(), categoryListDatas);
         categoryList.setAdapter(categoryListAdapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void getCategoryData(){

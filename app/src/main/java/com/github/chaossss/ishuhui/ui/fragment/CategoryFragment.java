@@ -21,17 +21,24 @@ import com.github.chaossss.ishuhui.ui.adapter.AdvPagerAdapter;
 import com.github.chaossss.ishuhui.ui.adapter.ComicPagerAdapter;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import me.relex.circleindicator.CircleIndicator;
 
 /**
  * Created by chaos on 2016/1/8.
  */
 public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRefreshListener, AdvPagerHandler.AdvPagerMsgListener {
-    private TabLayout tabLayout;
-    private ViewPager advViewPager;
-    private ViewPager comicViewPager;
-    private CircleIndicator circleIndicator;
-    private PullRefreshLayout pullRefreshLayout;
+    @Bind(R.id.category_tab)
+    TabLayout tabLayout;
+    @Bind(R.id.category_adv_viewpager)
+    ViewPager advViewPager;
+    @Bind(R.id.category_comic_viewpager)
+    ViewPager comicViewPager;
+    @Bind(R.id.category_indicator)
+    CircleIndicator circleIndicator;
+    @Bind(R.id.category_refresh_layout)
+    PullRefreshLayout pullRefreshLayout;
 
     private AdvPagerAdapter advPagerAdapter;
     private ComicPagerAdapter comicPagerAdapter;
@@ -53,13 +60,7 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_category, container, false);
-
-        tabLayout = (TabLayout) v.findViewById(R.id.category_tab);
-        advViewPager = (ViewPager) v.findViewById(R.id.category_adv_viewpager);
-        comicViewPager = (ViewPager) v.findViewById(R.id.category_comic_viewpager);
-        circleIndicator = (CircleIndicator) v.findViewById(R.id.category_indicator);
-        pullRefreshLayout = (PullRefreshLayout) v.findViewById(R.id.category_refresh_layout);
-
+        ButterKnife.bind(this, v);
         return v;
     }
 
@@ -70,6 +71,12 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
         initAdvPager();
         initComicPager();
         pullRefreshLayout.setOnRefreshListener(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void initAdvPager(){

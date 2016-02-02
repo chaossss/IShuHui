@@ -21,10 +21,16 @@ import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class UpdateWeeklyFragment extends Fragment implements PullRefreshLayout.OnRefreshListener {
-    private RecyclerView recyclerView;
+    @Bind(R.id.newest_newest_list)
+    RecyclerView recyclerView;
+    @Bind(R.id.newest_refresh_layout)
+    PullRefreshLayout pullRefreshLayout;
+
     private NewestAdapter updateWeeklyAdapter;
-    private PullRefreshLayout pullRefreshLayout;
     private List<AllBookModels.ReturnClazz.AllBook> updateWeeklyList;
 
     @Override
@@ -38,6 +44,7 @@ public class UpdateWeeklyFragment extends Fragment implements PullRefreshLayout.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_newest, container, false);
+        ButterKnife.bind(this, v);
 
         pullRefreshLayout = (PullRefreshLayout) v.findViewById(R.id.newest_refresh_layout);
 
@@ -52,6 +59,12 @@ public class UpdateWeeklyFragment extends Fragment implements PullRefreshLayout.
         super.onViewCreated(view, savedInstanceState);
         pullRefreshLayout.setOnRefreshListener(this);
         getUpdateWeeklyData();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void getUpdateWeeklyData() {

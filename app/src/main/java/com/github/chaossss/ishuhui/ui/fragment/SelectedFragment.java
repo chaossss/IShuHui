@@ -20,9 +20,15 @@ import com.github.chaossss.pianoview.PianoView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class SelectedFragment extends Fragment implements PianoItemListener, ViewPager.OnPageChangeListener {
-    private PianoView pianoView;
-    private ViewPager selectedPager;
+    @Bind(R.id.selected_piano_view)
+    PianoView pianoView;
+    @Bind(R.id.selected_pager)
+    ViewPager selectedPager;
+
     private SelectedPagerAdapter selectedPagerAdapter;
 
     private PianoAdapter pianoAdapter;
@@ -39,12 +45,11 @@ public class SelectedFragment extends Fragment implements PianoItemListener, Vie
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_selected, container, false);
+        ButterKnife.bind(this, root);
 
-        selectedPager = (ViewPager) root.findViewById(R.id.selected_pager);
         selectedPager.setAdapter(selectedPagerAdapter);
         selectedPager.addOnPageChangeListener(this);
 
-        pianoView = (PianoView) root.findViewById(R.id.selected_piano_view);
         pianoView.setPianoItemListenerListener(SelectedFragment.this);
         pianoAdapter = new PianoAdapter(getContext(), pianoView);
         pianoView.setAdapter(pianoAdapter);
@@ -52,6 +57,12 @@ public class SelectedFragment extends Fragment implements PianoItemListener, Vie
         getSelectedComic();
 
         return root;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void getSelectedComic(){

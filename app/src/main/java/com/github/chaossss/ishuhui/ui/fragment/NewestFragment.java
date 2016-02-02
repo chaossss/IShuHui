@@ -21,13 +21,19 @@ import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by chaos on 2016/1/4.
  */
 public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefreshListener {
-    private RecyclerView recyclerView;
+    @Bind(R.id.newest_newest_list)
+    RecyclerView recyclerView;
+    @Bind(R.id.newest_refresh_layout)
+    PullRefreshLayout pullRefreshLayout;
+
     private NewestAdapter newestAdapter;
-    private PullRefreshLayout pullRefreshLayout;
     private List<AllBookModels.ReturnClazz.AllBook> newestList;
 
     @Override
@@ -41,10 +47,8 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_newest, container, false);
+        ButterKnife.bind(this, v);
 
-        pullRefreshLayout = (PullRefreshLayout) v.findViewById(R.id.newest_refresh_layout);
-
-        recyclerView = (RecyclerView) v.findViewById(R.id.newest_newest_list);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
         return v;
@@ -55,6 +59,12 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
         super.onViewCreated(view, savedInstanceState);
         pullRefreshLayout.setOnRefreshListener(this);
         getBookData();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void getBookData() {
