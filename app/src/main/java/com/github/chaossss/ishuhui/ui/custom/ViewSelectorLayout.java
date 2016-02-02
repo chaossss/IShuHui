@@ -12,7 +12,7 @@ import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.ishuhui.domain.util.NetUtils;
 
 /**
- * Created by chaos on 2016/1/4.
+ * Created by chaossss on 2016/1/4.
  */
 public class ViewSelectorLayout extends FrameLayout implements View.OnClickListener {
     private View failView;

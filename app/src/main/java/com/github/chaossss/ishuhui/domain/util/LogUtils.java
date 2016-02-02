@@ -4,7 +4,7 @@ import android.util.Log;
 
 /**
  * Utility class helps log sth easier
- * Created by chaos on 2016/1/2.
+ * Created by chaossss on 2016/1/2.
  */
 public class LogUtils {
     private static LogUtils logUtils = new LogUtils();

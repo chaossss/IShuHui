@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by chaos on 2016/1/6.
+ * Created by chaossss on 2016/1/6.
  */
 public class MD5Utils {
     public static String encryptionFor32(String plainText){

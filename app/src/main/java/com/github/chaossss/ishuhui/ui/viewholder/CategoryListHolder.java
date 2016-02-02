@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.github.chaossss.ishuhui.R;
 
 /**
- * Created by chaos on 2016/1/9.
+ * Created by chaossss on 2016/1/9.
  */
 public class CategoryListHolder extends RecyclerView.ViewHolder {
     public ImageView cover;

@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 
 /**
  * Welcome page that shows IShuHui App's base info
- * Created by chaos on 2016/1/2.
+ * Created by chaossss on 2016/1/2.
  */
 public class WelcomeActivity extends AppCompatActivity implements Animation.AnimationListener, WelcomePresenter.View {
     @Bind(R.id.welcome_splash)

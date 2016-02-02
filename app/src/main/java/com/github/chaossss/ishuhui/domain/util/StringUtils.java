@@ -1,7 +1,7 @@
 package com.github.chaossss.ishuhui.domain.util;
 
 /**
- * Created by chaos on 2016/1/2.
+ * Created by chaossss on 2016/1/2.
  */
 public class StringUtils {
     public static final String NO = "第 ";

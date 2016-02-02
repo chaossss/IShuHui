@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by chaos on 2016/1/6.
+ * Created by chaossss on 2016/1/6.
  */
 public class EncryptionUtils {
     public static String createMd5(String... strParams){

@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by chaos on 2016/1/2.
+ * Created by chaossss on 2016/1/2.
  */
 public class ThreadExecutor implements InteractorExecutor {
     private static final int MAX_POOL_SIZE = 5;

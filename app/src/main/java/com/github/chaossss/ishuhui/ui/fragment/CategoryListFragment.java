@@ -21,7 +21,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by chaos on 2016/1/9.
+ * Created by chaossss on 2016/1/9.
  */
 public class CategoryListFragment extends Fragment {
     public static final int CATEGORY_FIRST = 0;

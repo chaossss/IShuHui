@@ -5,7 +5,7 @@ import android.app.Application;
 import com.github.chaossss.ishuhui.domain.model.UserModel;
 
 /**
- * Created by chaos on 2016/1/5.
+ * Created by chaossss on 2016/1/5.
  */
 public class BaseApplication extends Application {
     public static UserModel UserInfo;

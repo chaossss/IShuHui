@@ -10,7 +10,7 @@ import com.github.chaossss.ishuhui.R;
 import com.github.chaossss.widget.view.BadgedView;
 
 /**
- * Created by chaos on 2016/1/7.
+ * Created by chaossss on 2016/1/7.
  */
 public class NewestViewHolder extends RecyclerView.ViewHolder {
     private FrameLayout wrapper;

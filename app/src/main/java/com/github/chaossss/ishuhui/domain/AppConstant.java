@@ -1,7 +1,7 @@
 package com.github.chaossss.ishuhui.domain;
 
 /**
- * Created by chaos on 2016/1/6.
+ * Created by chaossss on 2016/1/6.
  */
 public class AppConstant {
     /**

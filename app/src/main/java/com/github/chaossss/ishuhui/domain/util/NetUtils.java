@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 
 /**
- * Created by chaos on 2016/1/4.
+ * Created by chaossss on 2016/1/4.
  */
 public class NetUtils {
 

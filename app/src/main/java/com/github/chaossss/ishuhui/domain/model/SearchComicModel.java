@@ -1,7 +1,7 @@
 package com.github.chaossss.ishuhui.domain.model;
 
 /**
- * Created by chaos on 2016/1/4.
+ * Created by chaossss on 2016/1/4.
  */
 public class SearchComicModel {
 

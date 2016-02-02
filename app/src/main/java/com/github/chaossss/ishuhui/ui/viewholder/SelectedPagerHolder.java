@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.github.chaossss.ishuhui.R;
 
 /**
- * Created by chaos on 2016/1/25.
+ * Created by chaossss on 2016/1/25.
  */
 public class SelectedPagerHolder {
     public TextView name;

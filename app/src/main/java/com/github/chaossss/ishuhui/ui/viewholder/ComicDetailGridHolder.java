@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.github.chaossss.ishuhui.R;
 
 /**
- * Created by chaos on 2016/1/15.
+ * Created by chaossss on 2016/1/15.
  */
 public class ComicDetailGridHolder extends RecyclerView.ViewHolder {
     private FrameLayout wrapper;

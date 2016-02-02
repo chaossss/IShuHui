@@ -26,7 +26,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by chaos on 2016/1/4.
+ * Created by chaossss on 2016/1/4.
  */
 public class NewestFragment extends Fragment implements NewestPresenter.View, PullRefreshLayout.OnRefreshListener {
     @Bind(R.id.newest_newest_list)
