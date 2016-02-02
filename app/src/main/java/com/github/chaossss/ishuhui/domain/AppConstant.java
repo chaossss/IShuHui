@@ -25,4 +25,6 @@ public class AppConstant {
     public static final String LOGIN_PSD = "123";
     public static final String LOGIN_CACHE_NAME = "key_login";
     public static final String LOGIN_RESULT = "login result----->";
+
+    public static final String GET_NEWEST_COMIC_RESULT = "get newest comic result----->";
 }

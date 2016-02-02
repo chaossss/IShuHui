@@ -1,0 +1,36 @@
+package com.github.chaossss.ishuhui.ui.presenter.newest;
+
+import com.github.chaossss.httplibrary.listener.BaseCallbackListener;
+import com.github.chaossss.ishuhui.domain.AppConstant;
+import com.github.chaossss.ishuhui.domain.dao.AppDao;
+import com.github.chaossss.ishuhui.domain.model.AllBookModels;
+import com.github.chaossss.ishuhui.domain.util.LogUtils;
+
+/**
+ * Created by chaos on 2016/2/2.
+ */
+public class NewestInteractor implements INewestInteractor {
+    @Override
+    public void getNewestComic(final OnNewestComicGotListener onNewestComicGotListener) {
+        AppDao.getInstance().getAllBook(new BaseCallbackListener<AllBookModels>() {
+            @Override
+            public void onStringResult(String result) {
+                super.onStringResult(result);
+                LogUtils.logI(this, AppConstant.GET_NEWEST_COMIC_RESULT + result);
+            }
+
+            @Override
+            public void onSuccess(AllBookModels result) {
+                super.onSuccess(result);
+                onNewestComicGotListener.onNewestComicGotSuccess(result.Return.List);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                super.onError(e);
+                onNewestComicGotListener.onNewestComicGotFail(AppConstant.NET_RESPONSE_ERROR);
+                LogUtils.logI(onNewestComicGotListener, AppConstant.EXCEPTION + e.toString());
+            }
+        });
+    }
+}

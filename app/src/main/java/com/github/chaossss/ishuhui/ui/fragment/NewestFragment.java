@@ -16,6 +16,7 @@ import com.github.chaossss.ishuhui.domain.dao.AppDao;
 import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
 import com.github.chaossss.ishuhui.ui.adapter.NewestAdapter;
+import com.github.chaossss.ishuhui.ui.presenter.newest.NewestPresenter;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 
 import java.util.ArrayList;
@@ -27,12 +28,13 @@ import butterknife.ButterKnife;
 /**
  * Created by chaos on 2016/1/4.
  */
-public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefreshListener {
+public class NewestFragment extends Fragment implements NewestPresenter.View, PullRefreshLayout.OnRefreshListener {
     @Bind(R.id.newest_newest_list)
     RecyclerView recyclerView;
     @Bind(R.id.newest_refresh_layout)
     PullRefreshLayout pullRefreshLayout;
 
+    private NewestPresenter presenter;
     private NewestAdapter newestAdapter;
     private List<AllBookModels.ReturnClazz.AllBook> newestList;
 
@@ -41,6 +43,7 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
         super.onCreate(savedInstanceState);
 
         newestList = new ArrayList<>();
+        presenter = new NewestPresenter(this);
     }
 
     @Nullable
@@ -58,7 +61,7 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         pullRefreshLayout.setOnRefreshListener(this);
-        getBookData();
+        presenter.getNewestComic();
     }
 
     @Override
@@ -67,40 +70,27 @@ public class NewestFragment extends Fragment implements PullRefreshLayout.OnRefr
         ButterKnife.unbind(this);
     }
 
-    private void getBookData() {
-        AppDao.getInstance().getAllBook(new BaseCallbackListener<AllBookModels>() {
-            @Override
-            public void onStringResult(String result) {
-                super.onStringResult(result);
-                LogUtils.logI(this, "onStringResult" + result);
-            }
-
-            @Override
-            public void onSuccess(AllBookModels result) {
-                super.onSuccess(result);
-                newestList =  result.Return.List;
-
-                if (newestAdapter == null) {
-                    newestAdapter = new NewestAdapter(getContext(), newestList);
-                    recyclerView.setAdapter(newestAdapter);
-                } else {
-                    newestAdapter.updateData(newestList);
-                }
-
-                pullRefreshLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onError(Exception e) {
-                super.onError(e);
-                ToastUtils.showToast(getActivity(), e.toString());
-                pullRefreshLayout.setRefreshing(false);
-            }
-        });
+    @Override
+    public void onRefresh() {
+        presenter.getNewestComic();
     }
 
     @Override
-    public void onRefresh() {
-        getBookData();
+    public void onNewestComicGotSuccess(List<AllBookModels.ReturnClazz.AllBook> newestComicList) {
+        newestList = newestComicList;
+
+        if (newestAdapter == null) {
+            newestAdapter = new NewestAdapter(getContext(), newestList);
+            recyclerView.setAdapter(newestAdapter);
+        } else {
+            newestAdapter.updateData(newestList);
+        }
+
+        pullRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onNewestComicGotFail(String errorInfo) {
+        pullRefreshLayout.setRefreshing(false);
     }
 }
