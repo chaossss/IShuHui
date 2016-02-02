@@ -5,6 +5,7 @@ import com.github.chaossss.ishuhui.domain.model.ComicDetailModel;
 import java.lang.ref.WeakReference;
 
 /**
+ * Presenter helps ComicDetailActivity implement it's get comic detail & subscribe function
  * Created by chaossss on 2016/2/2.
  */
 public class ComicDetailPresenter implements OnComicDetailGotListener, OnComicSubscribedListener {

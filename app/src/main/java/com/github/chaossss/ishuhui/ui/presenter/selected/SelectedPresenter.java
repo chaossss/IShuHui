@@ -6,6 +6,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
+ * Presenter helps SelectedFragment implement it's get selected comic function
  * Created by chaossss on 2016/2/2.
  */
 public class SelectedPresenter implements OnSelectedComicGotListener {

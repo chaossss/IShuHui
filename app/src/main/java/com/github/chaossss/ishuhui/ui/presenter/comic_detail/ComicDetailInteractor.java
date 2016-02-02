@@ -10,6 +10,7 @@ import com.github.chaossss.ishuhui.domain.util.LogUtils;
 import com.github.chaossss.ishuhui.domain.util.SPUtils;
 
 /**
+ * Interactor that helps ComicDetailActivity implement get comic detail & subscribe function
  * Created by chaossss on 2016/2/2.
  */
 public class ComicDetailInteractor implements IComicDetailInteractor {

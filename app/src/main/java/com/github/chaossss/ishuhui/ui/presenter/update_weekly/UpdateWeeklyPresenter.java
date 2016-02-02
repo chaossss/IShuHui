@@ -6,6 +6,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
+ * Presenter helps UpdateWeeklyFragment implement it's get comic updated this week function
  * Created by chaossss on 2016/2/2.
  */
 public class UpdateWeeklyPresenter implements OnComicUpdateThisWeekGotListener {

@@ -7,7 +7,7 @@ import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
 
 /**
- * Interactor that helps NewestFragment implement login function
+ * Interactor that helps NewestFragment implement get newest comic function
  * Created by chaossss on 2016/2/2.
  */
 public class NewestInteractor implements INewestInteractor {

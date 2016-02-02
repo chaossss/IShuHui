@@ -3,6 +3,7 @@ package com.github.chaossss.ishuhui.ui.presenter.comic_detail;
 import com.github.chaossss.ishuhui.domain.model.ComicDetailModel;
 
 /**
+ * ComicDetailActivity's abstract data operation
  * Created by chaossss on 2016/2/2.
  */
 public interface OnComicDetailGotListener {

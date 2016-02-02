@@ -7,6 +7,7 @@ import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
 
 /**
+ * Interactor that helps SelectedFragment implement get selected comic function
  * Created by chaossss on 2016/2/2.
  */
 public class SelectedInteractor implements ISelectedInteractor {

@@ -7,6 +7,7 @@ import com.github.chaossss.ishuhui.domain.model.AllBookModels;
 import com.github.chaossss.ishuhui.domain.util.LogUtils;
 
 /**
+ * Interactor that helps UpdateWeeklyFragment implement get comic updated this week function
  * Created by chaossss on 2016/2/2.
  */
 public class UpdateWeeklyInteractor implements IUpdateWeeklyInteractor {

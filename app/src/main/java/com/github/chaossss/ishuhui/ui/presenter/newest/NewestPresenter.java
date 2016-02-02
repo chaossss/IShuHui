@@ -6,7 +6,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
- * Presenter helps NewestFragment implement it's login function
+ * Presenter helps NewestFragment implement it's get newest comic function
  * Created by chaossss on 2016/2/2.
  */
 public class NewestPresenter implements OnNewestComicGotListener {
