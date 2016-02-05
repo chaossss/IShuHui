@@ -14,7 +14,7 @@ public class NewestPresenter implements OnNewestComicGotListener {
     private INewestInteractor newestInteractor;
 
     public NewestPresenter(View view) {
-        this.view = new WeakReference<View>(view);
+        this.view = new WeakReference<>(view);
         newestInteractor = new NewestInteractor();
     }
 

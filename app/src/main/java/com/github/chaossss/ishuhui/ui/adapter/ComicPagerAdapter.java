@@ -29,7 +29,7 @@ public class ComicPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return CategoryListFragment.CATEGORY_NUMS;
+        return CategoryListFragment.CATEGORY_NUM;
     }
 
     @Override

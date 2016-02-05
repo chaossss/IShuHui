@@ -32,6 +32,8 @@ public class AppConstant {
     public static final String GET_NEWEST_COMIC_RESULT = "get newest comic result----->";
     public static final String GET_COMIC_UPDATED_THIS_WEEK_RESULT = "get comic updated this week result----->";
     public static final String GET_SELECTED_COMIC_RESULT = "get selected comic result----->";
+    public static final String GET_CATEGORY_ADV_DATA_RESULT = "get adv data result----->";
+    public static final String GET_CATEGORY_RESULT = "get category data result----->";
 
     /**
      * comic detail & subscribe constant

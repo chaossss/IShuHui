@@ -9,28 +9,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.chaossss.httplibrary.listener.BaseCallbackListener;
 import com.github.chaossss.ishuhui.R;
-import com.github.chaossss.ishuhui.domain.dao.AppDao;
 import com.github.chaossss.ishuhui.domain.model.CategoryModel;
 import com.github.chaossss.ishuhui.ui.adapter.CategoryListAdapter;
+import com.github.chaossss.ishuhui.ui.presenter.category_list.CategoryListPresenter;
+import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CategoryListFragment extends Fragment {
+public class CategoryListFragment extends Fragment implements CategoryListPresenter.View {
     public static final int CATEGORY_FIRST = 0;
     public static final int CATEGORY_SECOND = 1;
     public static final int CATEGORY_THIRD = 2;
-    public static final int CATEGORY_NUMS = 3;
+    public static final int CATEGORY_NUM = 3;
 
-    public static final String DATA_NUMS = "30";
+    public static final String DATA_NUM = "30";
     public static final String PAGE_INDEX = "0";
     public static final String CATEGORY_FIRST_TITLE = "热血";
     public static final String CATEGORY_SECOND_TITLE = "国产";
     public static final String CATEGORY_THIRD_TITLE = "鼠绘";
+
+    private CategoryListPresenter presenter;
 
     private int type;
     private List<CategoryModel.ReturnEntity.ListEntity> categoryListDatas;
@@ -52,6 +55,13 @@ public class CategoryListFragment extends Fragment {
         return categoryListFragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        categoryListDatas = new ArrayList<>();
+        presenter = new CategoryListPresenter(this);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,7 +77,7 @@ public class CategoryListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getCategoryData();
+        presenter.getCategoryData(String.valueOf(type), DATA_NUM, PAGE_INDEX);
         categoryListAdapter = new CategoryListAdapter(getContext(), categoryListDatas);
         categoryList.setAdapter(categoryListAdapter);
     }
@@ -78,30 +88,18 @@ public class CategoryListFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
-    private void getCategoryData(){
-        AppDao.getInstance().getCategoryData(String.valueOf(type), DATA_NUMS, PAGE_INDEX, new BaseCallbackListener<CategoryModel>() {
-            @Override
-            public void onStringResult(String result) {
-                super.onStringResult(result);
-            }
+    @Override
+    public void onCategoryGotSuccess(CategoryModel categoryModel) {
+        categoryListDatas = categoryModel.Return.List;
+        if(categoryListDatas.size() == 0){
+            presenter.getCategoryData(String.valueOf(type), DATA_NUM, PAGE_INDEX);
+        } else {
+            categoryListAdapter.updateDatas(categoryListDatas);
+        }
+    }
 
-            @Override
-            public void onSuccess(CategoryModel result) {
-                super.onSuccess(result);
-                if (result != null) {
-                    categoryListDatas = result.Return.List;
-                    if(categoryListDatas.size() == 0){
-                        getCategoryData();
-                    } else {
-                        categoryListAdapter.updateDatas(categoryListDatas);
-                    }
-                }
-            }
-
-            @Override
-            public void onError(Exception e) {
-                super.onError(e);
-            }
-        });
+    @Override
+    public void onCategoryGotFail(String errorInfo) {
+        ToastUtils.showToast(getContext(), errorInfo);
     }
 }

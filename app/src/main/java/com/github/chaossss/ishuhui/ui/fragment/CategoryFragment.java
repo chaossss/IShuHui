@@ -11,21 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.baoyz.widget.PullRefreshLayout;
-import com.github.chaossss.httplibrary.listener.BaseCallbackListener;
 import com.github.chaossss.ishuhui.R;
-import com.github.chaossss.ishuhui.domain.dao.AppDao;
 import com.github.chaossss.ishuhui.domain.handler.AdvPagerHandler;
 import com.github.chaossss.ishuhui.domain.model.AdvModel;
-import com.github.chaossss.ishuhui.domain.util.LogUtils;
 import com.github.chaossss.ishuhui.ui.adapter.AdvPagerAdapter;
 import com.github.chaossss.ishuhui.ui.adapter.ComicPagerAdapter;
+import com.github.chaossss.ishuhui.ui.presenter.category.CategoryPresenter;
 import com.github.chaossss.ishuhui.ui.util.ToastUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.relex.circleindicator.CircleIndicator;
 
-public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRefreshListener, AdvPagerHandler.AdvPagerMsgListener {
+public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRefreshListener,
+        AdvPagerHandler.AdvPagerMsgListener, CategoryPresenter.View {
+
     @Bind(R.id.category_tab)
     TabLayout tabLayout;
     @Bind(R.id.category_adv_viewpager)
@@ -43,11 +43,13 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
     private AdvPagerHandler advPagerHandler;
 
     private boolean isAntiClockWise;
+    private CategoryPresenter presenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        presenter = new CategoryPresenter(this);
         advPagerHandler = new AdvPagerHandler(this);
         advPagerAdapter = new AdvPagerAdapter(getActivity());
         comicPagerAdapter = new ComicPagerAdapter(getChildFragmentManager());
@@ -78,7 +80,7 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
 
     private void initAdvPager(){
         advViewPager.setAdapter(advPagerAdapter);
-        getAdvData();
+        presenter.getAdvData();
     }
 
     private void initComicPager() {
@@ -87,37 +89,9 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
         tabLayout.setupWithViewPager(comicViewPager);
     }
 
-    private void getAdvData(){
-        AppDao.getInstance().getSlideData(new BaseCallbackListener<AdvModel>() {
-            @Override
-            public void onStringResult(String result) {
-                super.onStringResult(result);
-                LogUtils.logI(this, "onStringResult" + result);
-            }
-
-            @Override
-            public void onSuccess(AdvModel result) {
-                super.onSuccess(result);
-                if (result != null) {
-                    advPagerAdapter.updateAdvs(result.list);
-                    circleIndicator.setViewPager(advViewPager);
-                    pullRefreshLayout.setRefreshing(false);
-                    advPagerHandler.slidingPlayView(advViewPager.getCurrentItem());
-                }
-            }
-
-            @Override
-            public void onError(Exception e) {
-                super.onError(e);
-                ToastUtils.showToast(getActivity(), e.toString());
-                pullRefreshLayout.setRefreshing(false);
-            }
-        });
-    }
-
     @Override
     public void onRefresh() {
-        getAdvData();
+        presenter.getAdvData();
     }
 
     @Override
@@ -130,14 +104,14 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
                     currIndex++;
                 } else {
                     currIndex--;
-                    isAntiClockWise = !isAntiClockWise;
+                    isAntiClockWise = true;
                 }
             } else {
                 if(currIndex != 0){
                     currIndex--;
                 } else {
                     currIndex++;
-                    isAntiClockWise = !isAntiClockWise;
+                    isAntiClockWise = false;
                 }
             }
 
@@ -149,5 +123,19 @@ public class CategoryFragment extends Fragment implements PullRefreshLayout.OnRe
                 }
             }, AdvPagerHandler.DEFAULT_TIME);
         }
+    }
+
+    @Override
+    public void onAdvDataGotSuccess(AdvModel advModel) {
+        advPagerAdapter.updateAdvs(advModel.list);
+        circleIndicator.setViewPager(advViewPager);
+        pullRefreshLayout.setRefreshing(false);
+        advPagerHandler.slidingPlayView(advViewPager.getCurrentItem());
+    }
+
+    @Override
+    public void onAdvDataGotFail(String errorInfo) {
+        ToastUtils.showToast(getActivity(), errorInfo);
+        pullRefreshLayout.setRefreshing(false);
     }
 }
